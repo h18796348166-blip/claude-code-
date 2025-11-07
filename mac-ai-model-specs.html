@@ -11,1413 +11,1276 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-            min-height: 100vh;
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --bg-tertiary: #fbfbfd;
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --accent-blue: #0071e3;
+            --accent-green: #30d158;
+            --accent-orange: #ff9500;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #f5f5f7 0%, #ffffff 100%);
+            position: relative;
             overflow: hidden;
         }
 
-        header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            color: white;
-            padding: 40px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 50% 50%, rgba(0,113,227,0.05) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
             text-align: center;
+            z-index: 1;
+            padding: 40px 20px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
         }
 
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
             font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #1d1d1f 0%, #6e6e73 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .subtitle {
-            font-size: 1.1em;
-            opacity: 0.9;
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .content {
-            padding: 40px;
+        .hero .cta-buttons {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 14px 32px;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-primary {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .cta-primary:hover {
+            background: #0077ed;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,113,227,0.3);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--accent-blue);
+            border: 2px solid var(--accent-blue);
+        }
+
+        .cta-secondary:hover {
+            background: var(--accent-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 20px;
         }
 
         .section {
-            margin-bottom: 50px;
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
         .section-title {
-            font-size: 1.8em;
-            color: #1e3a8a;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #3b82f6;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
         }
 
-        .model-guide {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-left: 5px solid #3b82f6;
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 30px;
+        .section-description {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .model-guide h3 {
-            color: #1e3a8a;
-            margin-bottom: 15px;
-            font-size: 1.3em;
+        /* Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .model-sizes {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
         }
 
-        .model-size-card {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .model-size-card strong {
-            color: #3b82f6;
-            display: block;
-            margin-bottom: 5px;
-        }
-
+        /* Device Grid */
         .device-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .device-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .device-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+            transform: scaleX(0);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .device-card:hover::before {
+            transform: scaleX(1);
         }
 
         .device-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-lg);
         }
 
-        .device-header {
+        .device-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e5e7eb;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .device-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .device-card:hover .device-image img {
+            transform: scale(1.05);
+        }
+
+        .device-info {
+            padding: 32px;
         }
 
         .device-name {
-            font-size: 1.5em;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #1e3a8a;
+            margin-bottom: 8px;
         }
 
-        .chip-badge {
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            color: white;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.85em;
+        .device-chip {
+            display: inline-block;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 6px 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
             font-weight: 600;
+            margin-bottom: 24px;
         }
 
-        .spec-table {
-            width: 100%;
-            margin: 15px 0;
+        .device-chip.new {
+            background: linear-gradient(135deg, var(--accent-blue), #0077ed);
+            color: white;
         }
 
-        .spec-row {
+        .device-chip.pc {
+            background: linear-gradient(135deg, var(--accent-green), #28b34c);
+            color: white;
+        }
+
+        .spec-list {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .spec-item {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #e5e7eb;
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f7;
+            font-size: 0.95rem;
         }
 
-        .spec-row:last-child {
+        .spec-item:last-child {
             border-bottom: none;
         }
 
         .spec-label {
-            color: #6b7280;
+            color: var(--text-secondary);
             font-weight: 500;
         }
 
         .spec-value {
-            color: #1f2937;
+            color: var(--text-primary);
             font-weight: 600;
             text-align: right;
         }
 
-        .price-tag {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        .price-badge {
+            background: linear-gradient(135deg, var(--accent-green), #28b34c);
             color: white;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 16px;
             text-align: center;
-            margin-top: 15px;
-            font-size: 1.2em;
+            margin: 24px 0;
+            font-size: 1.5rem;
             font-weight: 700;
+            box-shadow: 0 4px 16px rgba(48, 209, 88, 0.3);
         }
 
-        .model-capacity {
-            margin-top: 15px;
-            padding: 15px;
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            border-radius: 8px;
+        .capability-badge {
+            background: linear-gradient(135deg, #fff4e5, #ffe5cc);
+            border-left: 4px solid var(--accent-orange);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
         }
 
-        .model-capacity-title {
+        .capability-title {
             font-weight: 600;
-            color: #92400e;
-            margin-bottom: 8px;
+            color: #bf5000;
+            margin-bottom: 12px;
+            font-size: 1rem;
         }
 
-        .model-capacity-list {
-            color: #78350f;
-            line-height: 1.6;
+        .capability-list {
+            color: #8f3d00;
+            line-height: 1.8;
+        }
+
+        /* Comparison Table */
+        .comparison-wrapper {
+            overflow-x: auto;
+            border-radius: 24px;
+            background: white;
+            box-shadow: var(--shadow-md);
         }
 
         .comparison-table {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .comparison-table thead {
+            background: linear-gradient(135deg, #1d1d1f 0%, #3d3d3f 100%);
         }
 
         .comparison-table th {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             color: white;
-            padding: 15px;
+            padding: 24px 20px;
             text-align: left;
             font-weight: 600;
+            font-size: 1.1rem;
         }
 
         .comparison-table td {
-            padding: 15px;
-            border-bottom: 1px solid #e5e7eb;
+            padding: 20px;
+            border-bottom: 1px solid #f5f5f7;
+            font-size: 0.95rem;
         }
 
-        .comparison-table tr:last-child td {
-            border-bottom: none;
+        .comparison-table tbody tr {
+            transition: background 0.3s ease;
         }
 
-        .comparison-table tr:hover {
-            background: #f9fafb;
+        .comparison-table tbody tr:hover {
+            background: #fbfbfd;
         }
 
-        .memory-bar {
-            height: 25px;
-            background: #e5e7eb;
-            border-radius: 12px;
+        .advantage {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 32px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Feature Highlight */
+        .feature-highlight {
+            background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
+            padding: 60px 40px;
+            border-radius: 32px;
+            margin: 60px 0;
+            position: relative;
             overflow: hidden;
-            margin-top: 5px;
         }
 
-        .memory-fill {
+        .feature-highlight::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+            background: radial-gradient(circle, rgba(0,113,227,0.08) 0%, transparent 70%);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 24px;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Pros/Cons */
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+            margin: 40px 0;
+        }
+
+        .pros-cons-card {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pros-cons-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .pros-cons-list {
+            list-style: none;
+        }
+
+        .pros-cons-list li {
+            padding: 12px 0 12px 36px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .pros-cons-list li::before {
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .pros-list li::before {
+            content: "✓";
+            color: var(--accent-green);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 40px;
+            background: #f5f5f7;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 16px 0;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 0.75em;
             font-weight: 600;
-            transition: width 1s ease-out;
+            font-size: 0.9rem;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0,113,227,0.3);
         }
 
-        .note {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 8px;
-            color: #78350f;
+        .progress-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
         }
 
-        .note strong {
-            color: #92400e;
+        /* Note Box */
+        .note-box {
+            background: linear-gradient(135deg, #fff9e6, #fff4d6);
+            border-left: 4px solid var(--accent-orange);
+            padding: 28px 32px;
+            border-radius: 16px;
+            margin: 32px 0;
+            line-height: 1.8;
         }
 
+        .note-box strong {
+            color: #bf5000;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .device-grid {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .device-grid,
+            .pros-cons-grid {
                 grid-template-columns: 1fr;
             }
 
-            h1 {
-                font-size: 1.8em;
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            .comparison-table {
-                font-size: 0.9em;
-            }
-        }
-
-        .legend {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin: 20px 0;
-            padding: 20px;
-            background: #f9fafb;
-            border-radius: 10px;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .legend-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 4px;
-        }
-
-        .pc-card {
-            background: linear-gradient(135deg, #fefefe 0%, #f0fdf4 100%);
-            border: 2px solid #10b981;
-        }
-
-        .pc-card .chip-badge {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-        }
-
-        .vs-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .vs-table th {
-            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .vs-table td {
-            padding: 15px;
-            border-bottom: 1px solid #e5e7eb;
-            text-align: center;
-        }
-
-        .vs-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .vs-table tr:hover {
-            background: #faf5ff;
-        }
-
-        .advantage {
-            color: #059669;
-            font-weight: 600;
-        }
-
-        .disadvantage {
-            color: #dc2626;
-            font-weight: 600;
-        }
-
-        .neutral {
-            color: #6b7280;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border: 2px solid #f59e0b;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-
-        .highlight-box h3 {
-            color: #92400e;
-            margin-bottom: 15px;
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 968px) {
-            .comparison-grid {
-                grid-template-columns: 1fr;
+            .section {
+                margin-bottom: 60px;
             }
         }
 
-        .pros-cons-box {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .pros-cons-box h4 {
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-
-        .pros-cons-box ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .pros-cons-box li {
-            padding: 8px 0;
-            line-height: 1.5;
-        }
-
-        .pros-cons-box li::before {
-            margin-right: 8px;
-        }
-
-        .pros-list li::before {
-            content: "✅";
-        }
-
-        .cons-list li::before {
-            content: "❌";
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🍎 Mac vs 🖥️ PC：AI模型运行能力全面对比</h1>
-            <p class="subtitle">Mac Mini / Mac Studio / MacBook Pro vs PC RTX 5070 Ti 全系列配置与AI模型适配指南 (2025年更新)</p>
-        </header>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
 
-        <div class="content">
-            <!-- AI模型大小指南 -->
-            <div class="section">
-                <h2 class="section-title">📊 AI模型内存需求指南</h2>
-                <div class="model-guide">
-                    <h3>不同规模AI模型的统一内存需求（基于4-bit量化）</h3>
-                    <div class="model-sizes">
-                        <div class="model-size-card">
-                            <strong>7B参数模型</strong>
-                            <div>存储: 4-5GB</div>
-                            <div>运行: ~8-12GB</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>13-14B参数模型</strong>
-                            <div>存储: 8-10GB</div>
-                            <div>运行: ~16-20GB</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>32B参数模型</strong>
-                            <div>存储: 18-22GB</div>
-                            <div>运行: ~32-40GB</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>70B参数模型</strong>
-                            <div>存储: 40-45GB</div>
-                            <div>运行: ~64-80GB</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>600B+参数模型</strong>
-                            <div>存储: 300GB+</div>
-                            <div>运行: ~512GB+</div>
-                        </div>
-                    </div>
-                    <div class="note">
-                        <strong>注意：</strong> GPU默认可分配75%的统一内存。实际运行模型时需要考虑KV缓存和系统开销，建议预留额外20-30%内存。
-                    </div>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AI 性能对决<br>Mac vs PC</h1>
+            <p class="subtitle">Apple Silicon 与 NVIDIA RTX 5070 Ti 全面对比<br>帮你选择最适合的 AI 开发平台</p>
+            <div class="cta-buttons">
+                <a href="#comparison" class="cta-button cta-primary">查看对比</a>
+                <a href="#recommendations" class="cta-button cta-secondary">购买建议</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Key Stats -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">核心性能数据</h2>
+                <p class="section-description">关键指标一目了然</p>
             </div>
 
-            <!-- Mac Mini系列 -->
-            <div class="section">
-                <h2 class="section-title">🖥️ Mac Mini 系列</h2>
-                <div class="device-grid">
-                    <!-- Mac Mini M2 基础版 -->
-                    <div class="device-card">
-                        <div class="device-header">
-                            <div class="device-name">Mac Mini M2</div>
-                            <div class="chip-badge">M2芯片</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">CPU核心</span>
-                                <span class="spec-value">8核 (4性能+4能效)</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">GPU核心</span>
-                                <span class="spec-value">10核</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">统一内存</span>
-                                <span class="spec-value">8GB / 16GB / 24GB</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">内存带宽</span>
-                                <span class="spec-value">100GB/s</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">起价: $599 (约¥4,300)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">可运行模型:</div>
-                            <div class="model-capacity-list">
-                                ✓ 8GB配置: 最大7B模型<br>
-                                ✓ 16GB配置: 最大13B模型<br>
-                                ✓ 24GB配置: 最大14B-32B模型
-                            </div>
-                        </div>
-                    </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">87</div>
+                    <div class="stat-label">RTX 5070 Ti<br>tokens/秒 (7B模型)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">512GB</div>
+                    <div class="stat-label">Mac Studio<br>最大统一内存</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5-8x</div>
+                    <div class="stat-label">PC 推理速度优势<br>(16GB范围内)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">80%</div>
+                    <div class="stat-label">Mac 功耗降低<br>vs PC</div>
+                </div>
+            </div>
+        </section>
 
-                    <!-- Mac Mini M2 Pro -->
-                    <div class="device-card">
-                        <div class="device-header">
-                            <div class="device-name">Mac Mini M2 Pro</div>
-                            <div class="chip-badge">M2 Pro</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">CPU核心</span>
-                                <span class="spec-value">10核/12核</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">GPU核心</span>
-                                <span class="spec-value">16核/19核</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">统一内存</span>
-                                <span class="spec-value">16GB / 32GB</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">内存带宽</span>
-                                <span class="spec-value">200GB/s</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">起价: $1,299 (约¥9,300)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">可运行模型:</div>
-                            <div class="model-capacity-list">
-                                ✓ 16GB配置: 最大13B模型<br>
-                                ✓ 32GB配置: 最大32B模型
-                            </div>
-                        </div>
-                    </div>
+        <!-- AI Model Memory Guide -->
+        <section class="section" id="model-guide">
+            <div class="section-header">
+                <h2 class="section-title">AI 模型内存需求</h2>
+                <p class="section-description">不同规模模型的内存需求（基于 4-bit 量化）</p>
+            </div>
 
-                    <!-- Mac Mini M4 基础版 -->
-                    <div class="device-card">
-                        <div class="device-header">
-                            <div class="device-name">Mac Mini M4</div>
-                            <div class="chip-badge">M4芯片 ⭐新</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">CPU核心</span>
+            <div class="glass-card">
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">📱</div>
+                        <div class="feature-title">7B 参数</div>
+                        <div class="feature-desc">存储: 4-5GB<br>运行: 8-12GB</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💻</div>
+                        <div class="feature-title">13-14B 参数</div>
+                        <div class="feature-desc">存储: 8-10GB<br>运行: 16-20GB</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🖥️</div>
+                        <div class="feature-title">32B 参数</div>
+                        <div class="feature-desc">存储: 18-22GB<br>运行: 32-40GB</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🏢</div>
+                        <div class="feature-title">70B 参数</div>
+                        <div class="feature-desc">存储: 40-45GB<br>运行: 64-80GB</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🚀</div>
+                        <div class="feature-title">600B+ 参数</div>
+                        <div class="feature-desc">存储: 300GB+<br>运行: 512GB+</div>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <strong>💡 重要提示：</strong> GPU默认可分配75%的统一内存。实际运行模型时需要考虑KV缓存和系统开销，建议预留额外20-30%内存。
+                </div>
+            </div>
+        </section>
+
+        <!-- Mac Devices -->
+        <section class="section" id="mac-devices">
+            <div class="section-header">
+                <h2 class="section-title">Mac 系列设备</h2>
+                <p class="section-description">Apple Silicon 强大性能</p>
+            </div>
+
+            <div class="device-grid">
+                <!-- Mac Mini M4 -->
+                <div class="device-card">
+                    <div class="device-image">
+                        <img src="https://www.apple.com/v/mac-mini/q/images/overview/hero__b8w8nlbp7lau_large.png" alt="Mac Mini M4" class="float-animation">
+                    </div>
+                    <div class="device-info">
+                        <h3 class="device-name">Mac Mini M4</h3>
+                        <span class="device-chip new">M4 芯片 • 最新</span>
+
+                        <ul class="spec-list">
+                            <li class="spec-item">
+                                <span class="spec-label">CPU 核心</span>
                                 <span class="spec-value">10核 (4性能+6能效)</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">GPU核心</span>
+                            </li>
+                            <li class="spec-item">
+                                <span class="spec-label">GPU 核心</span>
                                 <span class="spec-value">10核</span>
-                            </div>
-                            <div class="spec-row">
+                            </li>
+                            <li class="spec-item">
                                 <span class="spec-label">统一内存</span>
                                 <span class="spec-value">16GB / 24GB / 32GB</span>
-                            </div>
-                            <div class="spec-row">
+                            </li>
+                            <li class="spec-item">
                                 <span class="spec-label">内存带宽</span>
-                                <span class="spec-value">120GB/s (+20%)</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">起价: $599 (约¥4,300)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">可运行模型:</div>
-                            <div class="model-capacity-list">
-                                ✓ 16GB配置: 最大13B模型<br>
-                                ✓ 24GB配置: 最大32B模型<br>
-                                ✓ 32GB配置: 最大32B模型(流畅)
+                                <span class="spec-value">120GB/s</span>
+                            </li>
+                        </ul>
+
+                        <div class="price-badge">起价 $599</div>
+
+                        <div class="capability-badge">
+                            <div class="capability-title">可运行模型</div>
+                            <div class="capability-list">
+                                ✓ 16GB: 最大 13B 模型<br>
+                                ✓ 24GB: 最大 32B 模型<br>
+                                ✓ 32GB: 32B 模型流畅运行
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Mac Mini M4 Pro -->
-                    <div class="device-card">
-                        <div class="device-header">
-                            <div class="device-name">Mac Mini M4 Pro</div>
-                            <div class="chip-badge">M4 Pro ⭐新</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">CPU核心</span>
-                                <span class="spec-value">12核/14核</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">GPU核心</span>
-                                <span class="spec-value">16核/20核</span>
-                            </div>
-                            <div class="spec-row">
+                <!-- Mac Mini M4 Pro -->
+                <div class="device-card">
+                    <div class="device-image">
+                        <img src="https://www.apple.com/v/mac-mini/q/images/overview/hero__b8w8nlbp7lau_large.png" alt="Mac Mini M4 Pro" class="float-animation" style="animation-delay: 0.2s;">
+                    </div>
+                    <div class="device-info">
+                        <h3 class="device-name">Mac Mini M4 Pro</h3>
+                        <span class="device-chip new">M4 Pro • 专业级</span>
+
+                        <ul class="spec-list">
+                            <li class="spec-item">
+                                <span class="spec-label">CPU 核心</span>
+                                <span class="spec-value">12核 / 14核</span>
+                            </li>
+                            <li class="spec-item">
+                                <span class="spec-label">GPU 核心</span>
+                                <span class="spec-value">16核 / 20核</span>
+                            </li>
+                            <li class="spec-item">
                                 <span class="spec-label">统一内存</span>
                                 <span class="spec-value">24GB / 48GB / 64GB</span>
-                            </div>
-                            <div class="spec-row">
+                            </li>
+                            <li class="spec-item">
                                 <span class="spec-label">内存带宽</span>
                                 <span class="spec-value">273GB/s (+36%)</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">起价: $1,399 (约¥10,000)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">可运行模型:</div>
-                            <div class="model-capacity-list">
-                                ✓ 24GB配置: 最大32B模型<br>
-                                ✓ 48GB配置: 最大70B模型<br>
-                                ✓ 64GB配置: 70B模型(流畅)
+                            </li>
+                        </ul>
+
+                        <div class="price-badge">起价 $1,399</div>
+
+                        <div class="capability-badge">
+                            <div class="capability-title">可运行模型</div>
+                            <div class="capability-list">
+                                ✓ 24GB: 最大 32B 模型<br>
+                                ✓ 48GB: 最大 70B 模型<br>
+                                ✓ 64GB: 70B 模型流畅运行
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Mac Studio系列 -->
-            <div class="section">
-                <h2 class="section-title">🏢 Mac Studio 系列（工作站级）</h2>
-                <div class="device-grid">
-                    <!-- Mac Studio M2 Max -->
-                    <div class="device-card">
-                        <div class="device-header">
-                            <div class="device-name">Mac Studio M2 Max</div>
-                            <div class="chip-badge">M2 Max</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">CPU核心</span>
-                                <span class="spec-value">12核</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">GPU核心</span>
-                                <span class="spec-value">30核/38核</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">统一内存</span>
-                                <span class="spec-value">32GB / 64GB / 96GB</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">内存带宽</span>
-                                <span class="spec-value">400GB/s</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">起价: $1,999 (约¥14,300)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">可运行模型:</div>
-                            <div class="model-capacity-list">
-                                ✓ 32GB配置: 最大32B模型<br>
-                                ✓ 64GB配置: 70B模型<br>
-                                ✓ 96GB配置: 70B模型(流畅)
-                            </div>
-                        </div>
+                <!-- Mac Studio M2 Ultra -->
+                <div class="device-card">
+                    <div class="device-image">
+                        <img src="https://www.apple.com/v/mac-studio/e/images/overview/hero__bcjv6px1rwme_large.jpg" alt="Mac Studio" class="float-animation" style="animation-delay: 0.4s;">
                     </div>
+                    <div class="device-info">
+                        <h3 class="device-name">Mac Studio M2 Ultra</h3>
+                        <span class="device-chip">M2 Ultra • 工作站</span>
 
-                    <!-- Mac Studio M2 Ultra -->
-                    <div class="device-card">
-                        <div class="device-header">
-                            <div class="device-name">Mac Studio M2 Ultra</div>
-                            <div class="chip-badge">M2 Ultra</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">CPU核心</span>
+                        <ul class="spec-list">
+                            <li class="spec-item">
+                                <span class="spec-label">CPU 核心</span>
                                 <span class="spec-value">24核 (16性能+8能效)</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">GPU核心</span>
-                                <span class="spec-value">60核/76核</span>
-                            </div>
-                            <div class="spec-row">
+                            </li>
+                            <li class="spec-item">
+                                <span class="spec-label">GPU 核心</span>
+                                <span class="spec-value">60核 / 76核</span>
+                            </li>
+                            <li class="spec-item">
                                 <span class="spec-label">统一内存</span>
                                 <span class="spec-value">64GB / 128GB / 192GB</span>
-                            </div>
-                            <div class="spec-row">
+                            </li>
+                            <li class="spec-item">
                                 <span class="spec-label">内存带宽</span>
                                 <span class="spec-value">800GB/s</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">顶配: $8,799 (约¥63,000)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">可运行模型:</div>
-                            <div class="model-capacity-list">
-                                ✓ 64GB配置: 70B模型<br>
-                                ✓ 128GB配置: 120B模型<br>
-                                ✓ 192GB配置: 最大180B模型
-                            </div>
-                        </div>
-                    </div>
+                            </li>
+                        </ul>
 
-                    <!-- Mac Studio M3 Ultra (2025) -->
-                    <div class="device-card">
-                        <div class="device-header">
-                            <div class="device-name">Mac Studio M3 Ultra</div>
-                            <div class="chip-badge">M3 Ultra ⭐2025</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">CPU核心</span>
-                                <span class="spec-value">24核+</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">GPU核心</span>
-                                <span class="spec-value">60核+</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">统一内存</span>
-                                <span class="spec-value">最高512GB</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">内存带宽</span>
-                                <span class="spec-value">819GB/s</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">顶配: $14,099 (约¥101,000)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">可运行模型:</div>
-                            <div class="model-capacity-list">
-                                ✓ 128GB配置: 120B模型<br>
-                                ✓ 256GB配置: 240B模型<br>
-                                ✓ 512GB配置: 600B+超大模型<br>
-                                <strong>🚀 可运行600B+参数的超大模型！</strong>
+                        <div class="price-badge">顶配 $8,799</div>
+
+                        <div class="capability-badge">
+                            <div class="capability-title">可运行模型</div>
+                            <div class="capability-list">
+                                ✓ 64GB: 70B 模型<br>
+                                ✓ 128GB: 120B 模型<br>
+                                ✓ 192GB: 最大 180B 模型
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- MacBook Pro系列 -->
-            <div class="section">
-                <h2 class="section-title">💻 MacBook Pro 系列</h2>
-                <div class="device-grid">
-                    <!-- MacBook Pro M3 Max -->
-                    <div class="device-card">
-                        <div class="device-header">
-                            <div class="device-name">MacBook Pro M3 Max</div>
-                            <div class="chip-badge">M3 Max</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">CPU核心</span>
-                                <span class="spec-value">16核 (12性能+4能效)</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">GPU核心</span>
-                                <span class="spec-value">40核</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">统一内存</span>
-                                <span class="spec-value">48GB / 64GB / 128GB</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">尺寸</span>
-                                <span class="spec-value">14英寸 / 16英寸</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">起价: $3,199 (约¥23,000)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">可运行模型:</div>
-                            <div class="model-capacity-list">
-                                ✓ 48GB配置: 最大70B模型<br>
-                                ✓ 64GB配置: 70B模型(流畅)<br>
-                                ✓ 128GB配置: 120B模型
-                            </div>
-                        </div>
+                <!-- MacBook Pro M4 Max -->
+                <div class="device-card">
+                    <div class="device-image">
+                        <img src="https://www.apple.com/v/macbook-pro/ao/images/overview/hero__b8w8nlbp7lau_large.png" alt="MacBook Pro" class="float-animation" style="animation-delay: 0.6s;">
                     </div>
+                    <div class="device-info">
+                        <h3 class="device-name">MacBook Pro M4 Max</h3>
+                        <span class="device-chip new">M4 Max • 便携旗舰</span>
 
-                    <!-- MacBook Pro M4 -->
-                    <div class="device-card">
-                        <div class="device-header">
-                            <div class="device-name">MacBook Pro M4</div>
-                            <div class="chip-badge">M4 ⭐新</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">CPU核心</span>
-                                <span class="spec-value">10核 (4性能+6能效)</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">GPU核心</span>
-                                <span class="spec-value">10核</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">统一内存</span>
-                                <span class="spec-value">16GB / 24GB</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">尺寸</span>
-                                <span class="spec-value">14英寸</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">起价: $1,599 (约¥11,500)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">可运行模型:</div>
-                            <div class="model-capacity-list">
-                                ✓ 16GB配置: 最大13B模型<br>
-                                ✓ 24GB配置: 最大32B模型
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- MacBook Pro M4 Pro -->
-                    <div class="device-card">
-                        <div class="device-header">
-                            <div class="device-name">MacBook Pro M4 Pro</div>
-                            <div class="chip-badge">M4 Pro ⭐新</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">CPU核心</span>
+                        <ul class="spec-list">
+                            <li class="spec-item">
+                                <span class="spec-label">CPU 核心</span>
                                 <span class="spec-value">14核 (10性能+4能效)</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">GPU核心</span>
-                                <span class="spec-value">20核</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">统一内存</span>
-                                <span class="spec-value">24GB / 48GB</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">尺寸</span>
-                                <span class="spec-value">14英寸 / 16英寸</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">起价: $1,999 (约¥14,300)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">可运行模型:</div>
-                            <div class="model-capacity-list">
-                                ✓ 24GB配置: 最大32B模型<br>
-                                ✓ 48GB配置: 最大70B模型
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- MacBook Pro M4 Max -->
-                    <div class="device-card">
-                        <div class="device-header">
-                            <div class="device-name">MacBook Pro M4 Max</div>
-                            <div class="chip-badge">M4 Max ⭐新</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">CPU核心</span>
-                                <span class="spec-value">14核 (10性能+4能效)</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">GPU核心</span>
-                                <span class="spec-value">32核/40核</span>
-                            </div>
-                            <div class="spec-row">
+                            </li>
+                            <li class="spec-item">
+                                <span class="spec-label">GPU 核心</span>
+                                <span class="spec-value">32核 / 40核</span>
+                            </li>
+                            <li class="spec-item">
                                 <span class="spec-label">统一内存</span>
                                 <span class="spec-value">36GB / 64GB / 128GB</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">尺寸</span>
-                                <span class="spec-value">14英寸 / 16英寸</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">起价: $3,199 (约¥23,000)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">可运行模型:</div>
-                            <div class="model-capacity-list">
-                                ✓ 36GB配置: 最大32B模型<br>
-                                ✓ 64GB配置: 70B模型<br>
-                                ✓ 128GB配置: 120B模型
-                            </div>
-                        </div>
-                    </div>
+                            </li>
+                            <li class="spec-item">
+                                <span class="spec-label">屏幕尺寸</span>
+                                <span class="spec-value">14" / 16"</span>
+                            </li>
+                        </ul>
 
-                    <!-- MacBook Pro M5 -->
-                    <div class="device-card">
-                        <div class="device-header">
-                            <div class="device-name">MacBook Pro M5</div>
-                            <div class="chip-badge">M5 🔥最新</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">CPU核心</span>
-                                <span class="spec-value">10核</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">GPU核心</span>
-                                <span class="spec-value">10核 + Neural加速器</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">统一内存</span>
-                                <span class="spec-value">16GB起</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">性能提升</span>
-                                <span class="spec-value">GPU快1.6倍 vs M4</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">起价: $1,599 (约¥11,500)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">可运行模型:</div>
-                            <div class="model-capacity-list">
-                                ✓ 16GB配置: 最大13B模型<br>
-                                ✓ AI性能提升显著<br>
-                                🔥 最新芯片，专为AI优化
+                        <div class="price-badge">起价 $3,199</div>
+
+                        <div class="capability-badge">
+                            <div class="capability-title">可运行模型</div>
+                            <div class="capability-list">
+                                ✓ 36GB: 最大 32B 模型<br>
+                                ✓ 64GB: 70B 模型<br>
+                                ✓ 128GB: 120B 模型
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- PC配置系列 -->
-            <div class="section">
-                <h2 class="section-title">🖥️ PC配置：NVIDIA RTX 5070 Ti</h2>
-                <div class="device-grid">
-                    <!-- PC RTX 5070 Ti 基础配置 -->
-                    <div class="device-card pc-card">
-                        <div class="device-header">
-                            <div class="device-name">PC + RTX 5070 Ti</div>
-                            <div class="chip-badge">RTX 5070 Ti 🔥最新</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">CUDA核心</span>
-                                <span class="spec-value">8,960核</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">Tensor核心</span>
+        <!-- PC Devices -->
+        <section class="section" id="pc-devices">
+            <div class="section-header">
+                <h2 class="section-title">PC 配置方案</h2>
+                <p class="section-description">NVIDIA RTX 5070 Ti 性能怪兽</p>
+            </div>
+
+            <div class="device-grid">
+                <!-- RTX 5070 Ti -->
+                <div class="device-card">
+                    <div class="device-image" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
+                        <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/ada/rtx-5070-family/geforce-rtx-5070-ti-web-og-1200x630.jpg" alt="RTX 5070 Ti" class="float-animation">
+                    </div>
+                    <div class="device-info">
+                        <h3 class="device-name">RTX 5070 Ti</h3>
+                        <span class="device-chip pc">Blackwell 架构 • 最新</span>
+
+                        <ul class="spec-list">
+                            <li class="spec-item">
+                                <span class="spec-label">CUDA 核心</span>
+                                <span class="spec-value">8,960 核</span>
+                            </li>
+                            <li class="spec-item">
+                                <span class="spec-label">Tensor 核心</span>
                                 <span class="spec-value">280核 (第5代)</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">显存 (VRAM)</span>
+                            </li>
+                            <li class="spec-item">
+                                <span class="spec-label">显存 VRAM</span>
                                 <span class="spec-value">16GB GDDR7</span>
-                            </div>
-                            <div class="spec-row">
+                            </li>
+                            <li class="spec-item">
                                 <span class="spec-label">内存带宽</span>
                                 <span class="spec-value">896 GB/s</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">AI性能</span>
+                            </li>
+                            <li class="spec-item">
+                                <span class="spec-label">AI 性能</span>
                                 <span class="spec-value">1,406 AI TOPS</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">功耗</span>
-                                <span class="spec-value">300W TDP</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">显卡价格: $749 (约¥5,400)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">可运行模型 (推理速度):</div>
-                            <div class="model-capacity-list">
-                                ✓ 7-8B模型: 87 tokens/秒 🚀<br>
-                                ✓ 13-14B模型: ~60 tokens/秒<br>
-                                ✓ 20B模型: 66 tokens/秒<br>
-                                ✓ 32B模型 (4-bit): ~40 tokens/秒<br>
-                                <strong>⚡ 推理速度是Mac的3-8倍！</strong>
+                            </li>
+                        </ul>
+
+                        <div class="price-badge">显卡 $749</div>
+
+                        <div class="capability-badge">
+                            <div class="capability-title">推理性能 (tokens/秒)</div>
+                            <div class="capability-list">
+                                🚀 7-8B 模型: 87 t/s<br>
+                                🚀 13-14B 模型: ~60 t/s<br>
+                                🚀 20B 模型: 66 t/s<br>
+                                <strong>速度是 Mac 的 5-8 倍！</strong>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- PC 完整配置 -->
-                    <div class="device-card pc-card">
-                        <div class="device-header">
-                            <div class="device-name">推荐PC完整配置</div>
-                            <div class="chip-badge">AI工作站</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
+                <!-- Complete PC Build -->
+                <div class="device-card">
+                    <div class="device-image" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
+                        <div style="font-size: 4rem;">🖥️</div>
+                    </div>
+                    <div class="device-info">
+                        <h3 class="device-name">完整 PC 配置</h3>
+                        <span class="device-chip pc">AI 工作站</span>
+
+                        <ul class="spec-list">
+                            <li class="spec-item">
                                 <span class="spec-label">显卡</span>
                                 <span class="spec-value">RTX 5070 Ti 16GB</span>
-                            </div>
-                            <div class="spec-row">
+                            </li>
+                            <li class="spec-item">
                                 <span class="spec-label">处理器</span>
-                                <span class="spec-value">Intel i7/i9 或 AMD Ryzen 7/9</span>
-                            </div>
-                            <div class="spec-row">
+                                <span class="spec-value">Intel i7/i9 或 Ryzen 7/9</span>
+                            </li>
+                            <li class="spec-item">
                                 <span class="spec-label">系统内存</span>
                                 <span class="spec-value">32GB DDR4/DDR5</span>
-                            </div>
-                            <div class="spec-row">
+                            </li>
+                            <li class="spec-item">
                                 <span class="spec-label">存储</span>
                                 <span class="spec-value">1TB NVMe SSD</span>
-                            </div>
-                            <div class="spec-row">
+                            </li>
+                            <li class="spec-item">
                                 <span class="spec-label">电源</span>
                                 <span class="spec-value">750W 80+ Gold</span>
-                            </div>
-                        </div>
-                        <div class="price-tag">整机预算: $1,500-2,000 (约¥11,000-14,500)</div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">配置优势:</div>
-                            <div class="model-capacity-list">
+                            </li>
+                        </ul>
+
+                        <div class="price-badge">整机 $1,500-2,000</div>
+
+                        <div class="capability-badge">
+                            <div class="capability-title">配置优势</div>
+                            <div class="capability-list">
                                 ✓ 显卡可独立升级<br>
-                                ✓ 内存可随时扩展至128GB+<br>
-                                ✓ 多GPU配置支持（SLI/NVLink）<br>
-                                ✓ 散热和扩展性更好
+                                ✓ 内存可扩展至 128GB+<br>
+                                ✓ 支持多 GPU 配置<br>
+                                ✓ 散热和扩展性更强
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- RTX 5070 Ti vs 其他GPU对比 -->
-                    <div class="device-card pc-card">
-                        <div class="device-header">
-                            <div class="device-name">其他NVIDIA显卡对比</div>
-                            <div class="chip-badge">参考对比</div>
-                        </div>
-                        <div class="spec-table">
-                            <div class="spec-row">
-                                <span class="spec-label">RTX 5070</span>
-                                <span class="spec-value">12GB GDDR7, $549</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">RTX 5070 Ti</span>
-                                <span class="spec-value">16GB GDDR7, $749 ⭐推荐</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">RTX 5080</span>
-                                <span class="spec-value">16GB GDDR7, $999</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">RTX 5090</span>
-                                <span class="spec-value">32GB GDDR7, $1,999</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-label">RTX 4090</span>
-                                <span class="spec-value">24GB GDDR6X, ~$1,599</span>
-                            </div>
-                        </div>
-                        <div class="model-capacity">
-                            <div class="model-capacity-title">选择建议:</div>
-                            <div class="model-capacity-list">
-                                • RTX 5070 Ti: 性价比最佳，16GB足够大多数模型<br>
-                                • RTX 5090: 土豪之选，32GB可运行更大模型<br>
-                                • RTX 4090: 上一代旗舰，24GB二手市场价格合理
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="note">
-                    <strong>💡 PC端优势：</strong><br>
-                    • 推理速度快：在16GB范围内的模型上，速度是Mac的3-15倍<br>
-                    • 可扩展性：可随时升级显卡、增加内存、甚至多卡并联<br>
-                    • 性价比高：RTX 5070 Ti仅$749，整机$1,500-2,000就能获得强大AI性能<br>
-                    • 生态丰富：CUDA生态完善，支持更多AI框架和工具<br><br>
-                    <strong>⚠️ PC端劣势：</strong><br>
-                    • 内存限制：显存最大32GB（RTX 5090），无法运行70B+模型<br>
-                    • 功耗高：整机功耗400-600W，是Mac的5-10倍<br>
-                    • 体积大：需要独立机箱，不便携<br>
-                    • 噪音大：高负载时风扇噪音明显
-                </div>
-            </div>
-
-            <!-- Mac vs PC 全面对比 -->
-            <div class="section">
-                <h2 class="section-title">⚔️ Mac vs PC：全面对比分析</h2>
-
-                <div class="highlight-box">
-                    <h3>🎯 核心对比：选Mac还是选PC？</h3>
-                    <table class="vs-table">
-                        <thead>
-                            <tr>
-                                <th>对比项目</th>
-                                <th>🍎 Mac (Apple Silicon)</th>
-                                <th>🖥️ PC (RTX 5070 Ti)</th>
-                                <th>胜者</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>推理速度</strong></td>
-                                <td>7B模型: 11-14 t/s<br>20B模型: ~8 t/s</td>
-                                <td class="advantage">7B模型: 87 t/s<br>20B模型: 66 t/s</td>
-                                <td class="advantage">PC (5-8倍快)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>最大模型支持</strong></td>
-                                <td class="advantage">Mac Mini: 最大64GB<br>Mac Studio: 最大512GB<br>可运行600B+模型</td>
-                                <td>RTX 5070 Ti: 16GB<br>最大~32B模型</td>
-                                <td class="advantage">Mac (内存更大)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>价格</strong></td>
-                                <td>Mac Mini M4 16GB: $599<br>Mac Mini M4 Pro 64GB: ~$2,000</td>
-                                <td class="advantage">RTX 5070 Ti: $749<br>整机: $1,500-2,000</td>
-                                <td class="advantage">PC (性价比高)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>功耗</strong></td>
-                                <td class="advantage">40-80W (整机)</td>
-                                <td>300W (显卡)<br>400-600W (整机)</td>
-                                <td class="advantage">Mac (低80%)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>可扩展性</strong></td>
-                                <td>内存不可升级<br>一体化设计</td>
-                                <td class="advantage">显卡可升级<br>内存可扩展<br>支持多GPU</td>
-                                <td class="advantage">PC (灵活性高)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>便携性</strong></td>
-                                <td class="advantage">MacBook: 便携<br>Mac Mini: 小巧静音</td>
-                                <td>台式机，不便携<br>噪音较大</td>
-                                <td class="advantage">Mac (移动友好)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>软件生态</strong></td>
-                                <td>Metal框架<br>MLX框架<br>部分工具需适配</td>
-                                <td class="advantage">CUDA完善<br>PyTorch/TF原生支持<br>工具链成熟</td>
-                                <td class="advantage">PC (生态更好)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>训练能力</strong></td>
-                                <td>适合小规模训练<br>LoRA/QLoRA微调</td>
-                                <td class="advantage">更快的训练速度<br>成熟的训练框架</td>
-                                <td class="advantage">PC (训练更快)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="comparison-grid">
-                    <div class="pros-cons-box">
-                        <h4>🍎 选择Mac的理由</h4>
-                        <ul class="pros-list">
-                            <li>需要运行70B+超大模型</li>
-                            <li>追求极低功耗和安静运行</li>
-                            <li>需要便携性（MacBook）</li>
-                            <li>主要用于推理，对速度要求不极致</li>
-                            <li>预算充足（高配Mac Studio）</li>
-                            <li>已经在Mac生态内工作</li>
-                            <li>重视设计和用户体验</li>
-                        </ul>
-                    </div>
-
-                    <div class="pros-cons-box">
-                        <h4>🖥️ 选择PC的理由</h4>
-                        <ul class="pros-list">
-                            <li>需要最快的推理速度</li>
-                            <li>主要运行16GB以内的模型</li>
-                            <li>预算有限（$1,500-2,000）</li>
-                            <li>需要进行模型训练</li>
-                            <li>要求硬件可升级</li>
-                            <li>依赖CUDA生态和工具</li>
-                            <li>可能需要多GPU配置</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="highlight-box">
-                    <h3>💡 具体场景推荐</h3>
-                    <div class="model-sizes">
-                        <div class="model-size-card">
-                            <strong>📝 日常开发 (7-13B模型)</strong>
-                            <div><strong>推荐PC：</strong> RTX 5070 Ti</div>
-                            <div>理由：速度快5-8倍，价格便宜</div>
-                            <div>预算：$1,500-2,000</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>🔬 AI研究 (70-120B模型)</strong>
-                            <div><strong>推荐Mac：</strong> Mac Studio M2 Ultra</div>
-                            <div>理由：大内存支持，PC无法运行</div>
-                            <div>预算：$4,000-8,000</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>💼 专业开发 (32B模型)</strong>
-                            <div><strong>两者均可</strong></div>
-                            <div>Mac：Mac Mini M4 Pro 48GB ($1,800)</div>
-                            <div>PC：RTX 5070 Ti配置 ($1,800)</div>
-                            <div>Mac省电安静，PC速度更快</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>🚀 生产部署</strong>
-                            <div><strong>推荐PC：</strong> 多卡配置</div>
-                            <div>理由：吞吐量最大化</div>
-                            <div>可用2-4张RTX 5070 Ti并行</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>✈️ 移动办公</strong>
-                            <div><strong>推荐Mac：</strong> MacBook Pro M4 Max</div>
-                            <div>理由：便携+强大性能</div>
-                            <div>预算：$3,000-4,000</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>🎓 学生/入门</strong>
-                            <div><strong>推荐PC：</strong> RTX 5070 Ti</div>
-                            <div>理由：性价比最高</div>
-                            <div>预算：$1,500起</div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- 综合对比表 -->
-            <div class="section">
-                <h2 class="section-title">📈 统一内存与AI模型能力对比表</h2>
+        <!-- Main Comparison -->
+        <section class="section" id="comparison">
+            <div class="section-header">
+                <h2 class="section-title">Mac vs PC 全面对比</h2>
+                <p class="section-description">8个维度深度分析</p>
+            </div>
+
+            <div class="comparison-wrapper">
                 <table class="comparison-table">
                     <thead>
                         <tr>
-                            <th>统一内存容量</th>
-                            <th>可运行最大模型</th>
-                            <th>推荐使用场景</th>
-                            <th>性能表现</th>
+                            <th>对比项目</th>
+                            <th>🍎 Mac (Apple Silicon)</th>
+                            <th>🖥️ PC (RTX 5070 Ti)</th>
+                            <th>优势方</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>8GB</strong></td>
-                            <td>7B参数</td>
-                            <td>轻量级AI任务、代码辅助</td>
-                            <td>基础性能</td>
+                            <td><strong>推理速度</strong></td>
+                            <td>7B: 11-14 t/s<br>20B: ~8 t/s</td>
+                            <td class="advantage">7B: 87 t/s<br>20B: 66 t/s</td>
+                            <td class="advantage">PC (5-8倍快)</td>
                         </tr>
                         <tr>
-                            <td><strong>16GB</strong></td>
-                            <td>13B参数</td>
-                            <td>中小型模型、日常开发</td>
-                            <td>流畅运行</td>
+                            <td><strong>最大模型支持</strong></td>
+                            <td class="advantage">Mac Mini: 64GB<br>Mac Studio: 512GB<br>可运行 600B+ 模型</td>
+                            <td>RTX 5070 Ti: 16GB<br>最大 ~32B 模型</td>
+                            <td class="advantage">Mac (内存更大)</td>
                         </tr>
                         <tr>
-                            <td><strong>24GB</strong></td>
-                            <td>14B-32B参数</td>
-                            <td>中型模型、专业开发</td>
-                            <td>高效运行</td>
+                            <td><strong>价格</strong></td>
+                            <td>Mac Mini M4 16GB: $599<br>M4 Pro 64GB: ~$2,000</td>
+                            <td class="advantage">RTX 5070 Ti: $749<br>整机: $1,500-2,000</td>
+                            <td class="advantage">PC (性价比高)</td>
                         </tr>
                         <tr>
-                            <td><strong>32GB</strong></td>
-                            <td>32B参数</td>
-                            <td>大型模型、AI研发</td>
-                            <td>流畅高效</td>
+                            <td><strong>功耗</strong></td>
+                            <td class="advantage">40-80W (整机)</td>
+                            <td>300W (显卡)<br>400-600W (整机)</td>
+                            <td class="advantage">Mac (低 80%)</td>
                         </tr>
                         <tr>
-                            <td><strong>48GB</strong></td>
-                            <td>70B参数</td>
-                            <td>超大模型、专业AI工作</td>
-                            <td>专业级性能</td>
+                            <td><strong>可扩展性</strong></td>
+                            <td>内存不可升级<br>一体化设计</td>
+                            <td class="advantage">显卡可升级<br>内存可扩展<br>支持多 GPU</td>
+                            <td class="advantage">PC (灵活性高)</td>
                         </tr>
                         <tr>
-                            <td><strong>64GB</strong></td>
-                            <td>70B参数（流畅）</td>
-                            <td>超大模型流畅运行</td>
-                            <td>高性能</td>
+                            <td><strong>便携性</strong></td>
+                            <td class="advantage">MacBook: 便携<br>Mac Mini: 小巧静音</td>
+                            <td>台式机，不便携<br>噪音较大</td>
+                            <td class="advantage">Mac (移动友好)</td>
                         </tr>
                         <tr>
-                            <td><strong>96-128GB</strong></td>
-                            <td>120B参数</td>
-                            <td>顶级模型、AI研究</td>
-                            <td>工作站级</td>
+                            <td><strong>软件生态</strong></td>
+                            <td>Metal / MLX 框架<br>部分工具需适配</td>
+                            <td class="advantage">CUDA 完善<br>PyTorch/TF 原生支持<br>工具链成熟</td>
+                            <td class="advantage">PC (生态更好)</td>
                         </tr>
                         <tr>
-                            <td><strong>192GB</strong></td>
-                            <td>180B参数</td>
-                            <td>超大规模模型</td>
-                            <td>顶级性能</td>
-                        </tr>
-                        <tr>
-                            <td><strong>512GB</strong></td>
-                            <td>600B+参数</td>
-                            <td>最大规模AI模型</td>
-                            <td>极致性能</td>
+                            <td><strong>训练能力</strong></td>
+                            <td>适合小规模训练<br>LoRA/QLoRA 微调</td>
+                            <td class="advantage">更快的训练速度<br>成熟的训练框架</td>
+                            <td class="advantage">PC (训练更快)</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- 性能对比可视化 -->
-            <div class="section">
-                <h2 class="section-title">📊 内存容量可视化对比</h2>
-                <div style="margin-top: 20px;">
-                    <div style="margin-bottom: 20px;">
-                        <strong>Mac Mini M4 Pro (64GB)</strong>
-                        <div class="memory-bar">
-                            <div class="memory-fill" style="width: 12.5%;">64GB</div>
+            <div class="pros-cons-grid" style="margin-top: 60px;">
+                <div class="pros-cons-card">
+                    <h3 class="pros-cons-title">🍎 选择 Mac 的理由</h3>
+                    <ul class="pros-cons-list pros-list">
+                        <li>需要运行 70B+ 超大模型</li>
+                        <li>追求极低功耗和安静运行</li>
+                        <li>需要便携性（MacBook）</li>
+                        <li>主要用于推理，对速度要求不极致</li>
+                        <li>预算充足（高配 Mac Studio）</li>
+                        <li>已经在 Mac 生态内工作</li>
+                        <li>重视设计和用户体验</li>
+                    </ul>
+                </div>
+
+                <div class="pros-cons-card">
+                    <h3 class="pros-cons-title">🖥️ 选择 PC 的理由</h3>
+                    <ul class="pros-cons-list pros-list">
+                        <li>需要最快的推理速度</li>
+                        <li>主要运行 16GB 以内的模型</li>
+                        <li>预算有限（$1,500-2,000）</li>
+                        <li>需要进行模型训练</li>
+                        <li>要求硬件可升级</li>
+                        <li>依赖 CUDA 生态和工具</li>
+                        <li>可能需要多 GPU 配置</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Memory Comparison -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">内存/显存可视化对比</h2>
+                <p class="section-description">直观展示各设备的内存容量</p>
+            </div>
+
+            <div class="glass-card">
+                <div style="margin-bottom: 32px;">
+                    <div class="progress-label">Mac Mini M4 Pro (64GB)</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 12.5%;" data-width="12.5">64GB</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 32px;">
+                    <div class="progress-label">Mac Studio M2 Ultra (192GB)</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 37.5%;" data-width="37.5">192GB</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 32px;">
+                    <div class="progress-label">MacBook Pro M4 Max (128GB)</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 25%;" data-width="25">128GB</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 32px;">
+                    <div class="progress-label">PC RTX 5070 Ti (16GB VRAM)</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 3.125%; background: linear-gradient(90deg, var(--accent-green), #28b34c);" data-width="3.125">16GB</div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="progress-label">Mac Studio M3 Ultra (512GB) - 最强配置</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;" data-width="100">512GB</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommendations -->
+        <section class="section" id="recommendations">
+            <div class="section-header">
+                <h2 class="section-title">购买建议</h2>
+                <p class="section-description">根据你的需求和预算选择最佳方案</p>
+            </div>
+
+            <div class="feature-highlight">
+                <h3 style="text-align: center; font-size: 2rem; margin-bottom: 40px;">🏅 最佳性价比推荐</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🥇</div>
+                        <div class="feature-title">最佳入门</div>
+                        <div class="feature-desc">
+                            <strong>PC RTX 5070 Ti</strong><br>
+                            价格: $1,500-2,000<br>
+                            适合: 7B-32B 模型<br>
+                            ⭐ 性价比冠军
                         </div>
                     </div>
-                    <div style="margin-bottom: 20px;">
-                        <strong>Mac Studio M2 Ultra (192GB)</strong>
-                        <div class="memory-bar">
-                            <div class="memory-fill" style="width: 37.5%;">192GB</div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">🥈</div>
+                        <div class="feature-title">最佳中端</div>
+                        <div class="feature-desc">
+                            <strong>Mac Mini M4 Pro 48GB</strong><br>
+                            价格: ~$1,800<br>
+                            适合: 32B-70B 模型<br>
+                            安静省电，维护简单
                         </div>
                     </div>
-                    <div style="margin-bottom: 20px;">
-                        <strong>Mac Studio M3 Ultra (512GB)</strong>
-                        <div class="memory-bar">
-                            <div class="memory-fill" style="width: 100%;">512GB - 最强配置</div>
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 20px;">
-                        <strong>MacBook Pro M4 Max (128GB)</strong>
-                        <div class="memory-bar">
-                            <div class="memory-fill" style="width: 25%;">128GB</div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">🥉</div>
+                        <div class="feature-title">最佳高端</div>
+                        <div class="feature-desc">
+                            <strong>Mac Studio M2 Ultra 192GB</strong><br>
+                            价格: $6,000-8,000<br>
+                            适合: 70B-180B 模型<br>
+                            PC 无法比拟的大内存
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 购买建议 -->
-            <div class="section">
-                <h2 class="section-title">💡 购买建议 - Mac & PC 全方位推荐</h2>
-
-                <div class="highlight-box">
-                    <h3>🏅 最佳性价比配置推荐</h3>
-                    <div class="model-sizes">
-                        <div class="model-size-card">
-                            <strong>🥇 最佳入门：PC RTX 5070 Ti</strong>
-                            <div>配置: RTX 5070 Ti + R7/i7 + 32GB RAM</div>
-                            <div>价格: $1,500-2,000</div>
-                            <div>适合: 7B-32B模型，推理最快</div>
-                            <div>⭐ 性价比冠军</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>🥈 最佳中端：Mac Mini M4 Pro 48GB</strong>
-                            <div>价格: ~$1,800</div>
-                            <div>适合: 32B-70B模型</div>
-                            <div>优势: 安静省电，维护简单</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>🥉 最佳高端：Mac Studio M2 Ultra 192GB</strong>
-                            <div>价格: ~$6,000-8,000</div>
-                            <div>适合: 70B-180B模型</div>
-                            <div>优势: PC无法比拟的大内存</div>
-                        </div>
-                    </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" style="font-size: 2rem;">💵</div>
+                    <div class="stat-label" style="margin-top: 12px;"><strong>$600-1,000</strong><br>Mac Mini M4 16GB<br>或二手 PC + RTX 4070</div>
                 </div>
-
-                <div class="model-guide">
-                    <h3>📊 按预算选择设备</h3>
-                    <div class="model-sizes">
-                        <div class="model-size-card">
-                            <strong>💵 预算 $600-1,000</strong>
-                            <div>推荐: Mac Mini M4 16GB ($599)</div>
-                            <div>或二手PC + RTX 4070</div>
-                            <div>适合: 学习和轻度开发</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>💰 预算 $1,500-2,500</strong>
-                            <div>首选: PC RTX 5070 Ti 配置</div>
-                            <div>备选: Mac Mini M4 Pro 24GB</div>
-                            <div>适合: 日常AI开发工作</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>💎 预算 $3,000-5,000</strong>
-                            <div>台式: PC RTX 5090 配置</div>
-                            <div>便携: MacBook Pro M4 Max 128GB</div>
-                            <div>适合: 专业AI工程师</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>💸 预算 $6,000-10,000</strong>
-                            <div>推荐: Mac Studio M2 Ultra 192GB</div>
-                            <div>或多卡PC (2x RTX 5090)</div>
-                            <div>适合: AI研究和生产</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>🏆 预算 $10,000+</strong>
-                            <div>终极: Mac Studio M3 Ultra 512GB</div>
-                            <div>或服务器级多卡配置</div>
-                            <div>适合: 顶级AI实验室</div>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="font-size: 2rem;">💰</div>
+                    <div class="stat-label" style="margin-top: 12px;"><strong>$1,500-2,500</strong><br>首选 PC RTX 5070 Ti<br>备选 Mac Mini M4 Pro</div>
                 </div>
-
-                <div class="comparison-grid">
-                    <div class="pros-cons-box">
-                        <h4>🍎 Mac设备推荐配置</h4>
-                        <ul class="pros-list">
-                            <li><strong>入门：</strong>Mac Mini M4 16GB ($599) - 学习用</li>
-                            <li><strong>进阶：</strong>Mac Mini M4 Pro 48GB ($1,800) - 日常开发</li>
-                            <li><strong>专业：</strong>Mac Studio M2 Ultra 128GB ($5,000) - 专业研究</li>
-                            <li><strong>便携：</strong>MacBook Pro M4 Max 64GB ($3,500) - 移动办公</li>
-                            <li><strong>终极：</strong>Mac Studio M3 Ultra 512GB ($14,000) - 超大模型</li>
-                        </ul>
-                    </div>
-
-                    <div class="pros-cons-box">
-                        <h4>🖥️ PC设备推荐配置</h4>
-                        <ul class="pros-list">
-                            <li><strong>入门：</strong>RTX 5070 12GB配置 ($1,300) - 学习用</li>
-                            <li><strong>主流：</strong>RTX 5070 Ti 16GB配置 ($1,800) ⭐推荐</li>
-                            <li><strong>高端：</strong>RTX 5080 16GB配置 ($2,500) - 专业开发</li>
-                            <li><strong>旗舰：</strong>RTX 5090 32GB配置 ($3,500) - 最大模型</li>
-                            <li><strong>多卡：</strong>2x RTX 5070 Ti ($5,000) - 生产部署</li>
-                        </ul>
-                    </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="font-size: 2rem;">💎</div>
+                    <div class="stat-label" style="margin-top: 12px;"><strong>$3,000-5,000</strong><br>台式 PC RTX 5090<br>便携 MacBook Pro M4 Max</div>
                 </div>
-
-                <div class="note">
-                    <strong>💰 终极性价比建议：</strong><br>
-                    <strong>🎯 日常开发推荐：</strong>PC RTX 5070 Ti 配置 ($1,800) - 速度最快，性价比最高<br>
-                    <strong>🔬 研究推荐：</strong>Mac Studio M2 Ultra 192GB ($6,000-8,000) - 唯一能跑180B模型的选择<br>
-                    <strong>✈️ 移动推荐：</strong>MacBook Pro M4 Max 64GB ($3,500) - 便携+强大<br>
-                    <strong>🏆 土豪配置：</strong>Mac Studio M3 Ultra 512GB ($14,000) - 可运行600B+模型<br><br>
-
-                    <strong>🎓 学生/初学者特别推荐：</strong><br>
-                    如果预算有限，<strong>首选PC RTX 5070 Ti配置</strong>。可以获得：<br>
-                    • 最快的推理速度（是Mac的5-8倍）<br>
-                    • 成熟的CUDA生态和丰富的教程<br>
-                    • 可以随时升级显卡<br>
-                    • 整机预算仅$1,500-2,000<br><br>
-
-                    <strong>⚠️ 重要提示：</strong><br>
-                    • <strong>Mac：</strong>统一内存无法后期升级，建议一步到位<br>
-                    • <strong>PC：</strong>显卡可升级，可先买RTX 5070 Ti，后续换5090<br>
-                    • 量化模型(4-bit/8-bit)可大幅降低内存/显存需求<br>
-                    • 实际运行模型需考虑系统开销，建议预留20-30%余量<br>
-                    • 价格仅供参考，以官网和授权经销商实际价格为准<br>
-                    • <strong>速度优先选PC，内存优先选Mac，便携性选MacBook</strong>
+                <div class="stat-card">
+                    <div class="stat-value" style="font-size: 2rem;">🏆</div>
+                    <div class="stat-label" style="margin-top: 12px;"><strong>$10,000+</strong><br>Mac Studio M3 Ultra 512GB<br>或服务器级多卡配置</div>
                 </div>
             </div>
-        </div>
+
+            <div class="note-box">
+                <strong>💰 终极性价比建议：</strong><br><br>
+                <strong>🎯 日常开发推荐：</strong>PC RTX 5070 Ti 配置 ($1,800) - 速度最快，性价比最高<br>
+                <strong>🔬 研究推荐：</strong>Mac Studio M2 Ultra 192GB ($6,000-8,000) - 唯一能跑 180B 模型的选择<br>
+                <strong>✈️ 移动推荐：</strong>MacBook Pro M4 Max 64GB ($3,500) - 便携+强大<br>
+                <strong>🏆 土豪配置：</strong>Mac Studio M3 Ultra 512GB ($14,000) - 可运行 600B+ 模型<br><br>
+
+                <strong>🎓 学生/初学者特别推荐：</strong><br>
+                如果预算有限，<strong>首选 PC RTX 5070 Ti 配置</strong>。可以获得：<br>
+                • 最快的推理速度（是 Mac 的 5-8 倍）<br>
+                • 成熟的 CUDA 生态和丰富的教程<br>
+                • 可以随时升级显卡<br>
+                • 整机预算仅 $1,500-2,000<br><br>
+
+                <strong>⚠️ 重要提示：</strong><br>
+                • <strong>Mac：</strong>统一内存无法后期升级，建议一步到位<br>
+                • <strong>PC：</strong>显卡可升级，可先买 RTX 5070 Ti，后续换 5090<br>
+                • 量化模型 (4-bit/8-bit) 可大幅降低内存/显存需求<br>
+                • 价格仅供参考，以官网和授权经销商实际价格为准<br>
+                • <strong>速度优先选 PC，内存优先选 Mac，便携性选 MacBook</strong>
+            </div>
+        </section>
     </div>
 
     <script>
-        // 添加简单的动画效果
-        document.addEventListener('DOMContentLoaded', function() {
-            const memoryFills = document.querySelectorAll('.memory-fill');
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            scrollIndicator.style.width = scrolled + '%';
+        });
 
-            // 延迟触发动画
-            setTimeout(() => {
-                memoryFills.forEach((fill, index) => {
-                    setTimeout(() => {
-                        fill.style.transition = 'width 1.5s ease-out';
-                    }, index * 200);
-                });
-            }, 500);
+        // Intersection Observer for sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-            // 鼠标悬停效果
-            const deviceCards = document.querySelectorAll('.device-card');
-            deviceCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.borderColor = '#3b82f6';
-                });
-                card.addEventListener('mouseleave', function() {
-                    this.style.borderColor = '#e5e7eb';
-                });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Progress bars animation
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const fills = entry.target.querySelectorAll('.progress-fill');
+                    fills.forEach(fill => {
+                        const width = fill.getAttribute('data-width');
+                        setTimeout(() => {
+                            fill.style.width = width + '%';
+                        }, 200);
+                    });
+                    progressObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            progressObserver.observe(card);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize progress bars to 0
+        document.querySelectorAll('.progress-fill').forEach(fill => {
+            fill.style.width = '0%';
         });
     </script>
 </body>
