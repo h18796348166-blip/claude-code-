@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mac设备AI模型运行能力对比</title>
+    <title>Mac vs PC AI模型运行能力全面对比 - RTX 5070 Ti vs Apple Silicon 2025</title>
     <style>
         * {
             margin: 0;
@@ -296,13 +296,128 @@
             height: 20px;
             border-radius: 4px;
         }
+
+        .pc-card {
+            background: linear-gradient(135deg, #fefefe 0%, #f0fdf4 100%);
+            border: 2px solid #10b981;
+        }
+
+        .pc-card .chip-badge {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .vs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .vs-table th {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .vs-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .vs-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .vs-table tr:hover {
+            background: #faf5ff;
+        }
+
+        .advantage {
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .disadvantage {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .neutral {
+            color: #6b7280;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .highlight-box h3 {
+            color: #92400e;
+            margin-bottom: 15px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 968px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pros-cons-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .pros-cons-box h4 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .pros-cons-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pros-cons-box li {
+            padding: 8px 0;
+            line-height: 1.5;
+        }
+
+        .pros-cons-box li::before {
+            margin-right: 8px;
+        }
+
+        .pros-list li::before {
+            content: "✅";
+        }
+
+        .cons-list li::before {
+            content: "❌";
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🍎 Mac设备AI模型运行能力对比</h1>
-            <p class="subtitle">Mac Mini / Mac Studio / MacBook Pro 全系列配置与AI模型适配指南 (2025年更新)</p>
+            <h1>🍎 Mac vs 🖥️ PC：AI模型运行能力全面对比</h1>
+            <p class="subtitle">Mac Mini / Mac Studio / MacBook Pro vs PC RTX 5070 Ti 全系列配置与AI模型适配指南 (2025年更新)</p>
         </header>
 
         <div class="content">
@@ -780,6 +895,288 @@
                 </div>
             </div>
 
+            <!-- PC配置系列 -->
+            <div class="section">
+                <h2 class="section-title">🖥️ PC配置：NVIDIA RTX 5070 Ti</h2>
+                <div class="device-grid">
+                    <!-- PC RTX 5070 Ti 基础配置 -->
+                    <div class="device-card pc-card">
+                        <div class="device-header">
+                            <div class="device-name">PC + RTX 5070 Ti</div>
+                            <div class="chip-badge">RTX 5070 Ti 🔥最新</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">CUDA核心</span>
+                                <span class="spec-value">8,960核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Tensor核心</span>
+                                <span class="spec-value">280核 (第5代)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">显存 (VRAM)</span>
+                                <span class="spec-value">16GB GDDR7</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">内存带宽</span>
+                                <span class="spec-value">896 GB/s</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">AI性能</span>
+                                <span class="spec-value">1,406 AI TOPS</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">功耗</span>
+                                <span class="spec-value">300W TDP</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">显卡价格: $749 (约¥5,400)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">可运行模型 (推理速度):</div>
+                            <div class="model-capacity-list">
+                                ✓ 7-8B模型: 87 tokens/秒 🚀<br>
+                                ✓ 13-14B模型: ~60 tokens/秒<br>
+                                ✓ 20B模型: 66 tokens/秒<br>
+                                ✓ 32B模型 (4-bit): ~40 tokens/秒<br>
+                                <strong>⚡ 推理速度是Mac的3-8倍！</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PC 完整配置 -->
+                    <div class="device-card pc-card">
+                        <div class="device-header">
+                            <div class="device-name">推荐PC完整配置</div>
+                            <div class="chip-badge">AI工作站</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">显卡</span>
+                                <span class="spec-value">RTX 5070 Ti 16GB</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">处理器</span>
+                                <span class="spec-value">Intel i7/i9 或 AMD Ryzen 7/9</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">系统内存</span>
+                                <span class="spec-value">32GB DDR4/DDR5</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">存储</span>
+                                <span class="spec-value">1TB NVMe SSD</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">电源</span>
+                                <span class="spec-value">750W 80+ Gold</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">整机预算: $1,500-2,000 (约¥11,000-14,500)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">配置优势:</div>
+                            <div class="model-capacity-list">
+                                ✓ 显卡可独立升级<br>
+                                ✓ 内存可随时扩展至128GB+<br>
+                                ✓ 多GPU配置支持（SLI/NVLink）<br>
+                                ✓ 散热和扩展性更好
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RTX 5070 Ti vs 其他GPU对比 -->
+                    <div class="device-card pc-card">
+                        <div class="device-header">
+                            <div class="device-name">其他NVIDIA显卡对比</div>
+                            <div class="chip-badge">参考对比</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">RTX 5070</span>
+                                <span class="spec-value">12GB GDDR7, $549</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">RTX 5070 Ti</span>
+                                <span class="spec-value">16GB GDDR7, $749 ⭐推荐</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">RTX 5080</span>
+                                <span class="spec-value">16GB GDDR7, $999</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">RTX 5090</span>
+                                <span class="spec-value">32GB GDDR7, $1,999</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">RTX 4090</span>
+                                <span class="spec-value">24GB GDDR6X, ~$1,599</span>
+                            </div>
+                        </div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">选择建议:</div>
+                            <div class="model-capacity-list">
+                                • RTX 5070 Ti: 性价比最佳，16GB足够大多数模型<br>
+                                • RTX 5090: 土豪之选，32GB可运行更大模型<br>
+                                • RTX 4090: 上一代旗舰，24GB二手市场价格合理
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <strong>💡 PC端优势：</strong><br>
+                    • 推理速度快：在16GB范围内的模型上，速度是Mac的3-15倍<br>
+                    • 可扩展性：可随时升级显卡、增加内存、甚至多卡并联<br>
+                    • 性价比高：RTX 5070 Ti仅$749，整机$1,500-2,000就能获得强大AI性能<br>
+                    • 生态丰富：CUDA生态完善，支持更多AI框架和工具<br><br>
+                    <strong>⚠️ PC端劣势：</strong><br>
+                    • 内存限制：显存最大32GB（RTX 5090），无法运行70B+模型<br>
+                    • 功耗高：整机功耗400-600W，是Mac的5-10倍<br>
+                    • 体积大：需要独立机箱，不便携<br>
+                    • 噪音大：高负载时风扇噪音明显
+                </div>
+            </div>
+
+            <!-- Mac vs PC 全面对比 -->
+            <div class="section">
+                <h2 class="section-title">⚔️ Mac vs PC：全面对比分析</h2>
+
+                <div class="highlight-box">
+                    <h3>🎯 核心对比：选Mac还是选PC？</h3>
+                    <table class="vs-table">
+                        <thead>
+                            <tr>
+                                <th>对比项目</th>
+                                <th>🍎 Mac (Apple Silicon)</th>
+                                <th>🖥️ PC (RTX 5070 Ti)</th>
+                                <th>胜者</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>推理速度</strong></td>
+                                <td>7B模型: 11-14 t/s<br>20B模型: ~8 t/s</td>
+                                <td class="advantage">7B模型: 87 t/s<br>20B模型: 66 t/s</td>
+                                <td class="advantage">PC (5-8倍快)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>最大模型支持</strong></td>
+                                <td class="advantage">Mac Mini: 最大64GB<br>Mac Studio: 最大512GB<br>可运行600B+模型</td>
+                                <td>RTX 5070 Ti: 16GB<br>最大~32B模型</td>
+                                <td class="advantage">Mac (内存更大)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>价格</strong></td>
+                                <td>Mac Mini M4 16GB: $599<br>Mac Mini M4 Pro 64GB: ~$2,000</td>
+                                <td class="advantage">RTX 5070 Ti: $749<br>整机: $1,500-2,000</td>
+                                <td class="advantage">PC (性价比高)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>功耗</strong></td>
+                                <td class="advantage">40-80W (整机)</td>
+                                <td>300W (显卡)<br>400-600W (整机)</td>
+                                <td class="advantage">Mac (低80%)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>可扩展性</strong></td>
+                                <td>内存不可升级<br>一体化设计</td>
+                                <td class="advantage">显卡可升级<br>内存可扩展<br>支持多GPU</td>
+                                <td class="advantage">PC (灵活性高)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>便携性</strong></td>
+                                <td class="advantage">MacBook: 便携<br>Mac Mini: 小巧静音</td>
+                                <td>台式机，不便携<br>噪音较大</td>
+                                <td class="advantage">Mac (移动友好)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>软件生态</strong></td>
+                                <td>Metal框架<br>MLX框架<br>部分工具需适配</td>
+                                <td class="advantage">CUDA完善<br>PyTorch/TF原生支持<br>工具链成熟</td>
+                                <td class="advantage">PC (生态更好)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>训练能力</strong></td>
+                                <td>适合小规模训练<br>LoRA/QLoRA微调</td>
+                                <td class="advantage">更快的训练速度<br>成熟的训练框架</td>
+                                <td class="advantage">PC (训练更快)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="pros-cons-box">
+                        <h4>🍎 选择Mac的理由</h4>
+                        <ul class="pros-list">
+                            <li>需要运行70B+超大模型</li>
+                            <li>追求极低功耗和安静运行</li>
+                            <li>需要便携性（MacBook）</li>
+                            <li>主要用于推理，对速度要求不极致</li>
+                            <li>预算充足（高配Mac Studio）</li>
+                            <li>已经在Mac生态内工作</li>
+                            <li>重视设计和用户体验</li>
+                        </ul>
+                    </div>
+
+                    <div class="pros-cons-box">
+                        <h4>🖥️ 选择PC的理由</h4>
+                        <ul class="pros-list">
+                            <li>需要最快的推理速度</li>
+                            <li>主要运行16GB以内的模型</li>
+                            <li>预算有限（$1,500-2,000）</li>
+                            <li>需要进行模型训练</li>
+                            <li>要求硬件可升级</li>
+                            <li>依赖CUDA生态和工具</li>
+                            <li>可能需要多GPU配置</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>💡 具体场景推荐</h3>
+                    <div class="model-sizes">
+                        <div class="model-size-card">
+                            <strong>📝 日常开发 (7-13B模型)</strong>
+                            <div><strong>推荐PC：</strong> RTX 5070 Ti</div>
+                            <div>理由：速度快5-8倍，价格便宜</div>
+                            <div>预算：$1,500-2,000</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>🔬 AI研究 (70-120B模型)</strong>
+                            <div><strong>推荐Mac：</strong> Mac Studio M2 Ultra</div>
+                            <div>理由：大内存支持，PC无法运行</div>
+                            <div>预算：$4,000-8,000</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>💼 专业开发 (32B模型)</strong>
+                            <div><strong>两者均可</strong></div>
+                            <div>Mac：Mac Mini M4 Pro 48GB ($1,800)</div>
+                            <div>PC：RTX 5070 Ti配置 ($1,800)</div>
+                            <div>Mac省电安静，PC速度更快</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>🚀 生产部署</strong>
+                            <div><strong>推荐PC：</strong> 多卡配置</div>
+                            <div>理由：吞吐量最大化</div>
+                            <div>可用2-4张RTX 5070 Ti并行</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>✈️ 移动办公</strong>
+                            <div><strong>推荐Mac：</strong> MacBook Pro M4 Max</div>
+                            <div>理由：便携+强大性能</div>
+                            <div>预算：$3,000-4,000</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>🎓 学生/入门</strong>
+                            <div><strong>推荐PC：</strong> RTX 5070 Ti</div>
+                            <div>理由：性价比最高</div>
+                            <div>预算：$1,500起</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- 综合对比表 -->
             <div class="section">
                 <h2 class="section-title">📈 统一内存与AI模型能力对比表</h2>
@@ -884,54 +1281,114 @@
 
             <!-- 购买建议 -->
             <div class="section">
-                <h2 class="section-title">💡 购买建议</h2>
-                <div class="model-guide">
-                    <h3>根据需求选择合适的Mac设备</h3>
+                <h2 class="section-title">💡 购买建议 - Mac & PC 全方位推荐</h2>
+
+                <div class="highlight-box">
+                    <h3>🏅 最佳性价比配置推荐</h3>
                     <div class="model-sizes">
                         <div class="model-size-card">
-                            <strong>🎯 入门AI开发者</strong>
-                            <div>推荐: Mac Mini M4 (16-24GB)</div>
-                            <div>价格: $599起</div>
-                            <div>适合: 7B-32B模型</div>
+                            <strong>🥇 最佳入门：PC RTX 5070 Ti</strong>
+                            <div>配置: RTX 5070 Ti + R7/i7 + 32GB RAM</div>
+                            <div>价格: $1,500-2,000</div>
+                            <div>适合: 7B-32B模型，推理最快</div>
+                            <div>⭐ 性价比冠军</div>
                         </div>
                         <div class="model-size-card">
-                            <strong>💼 专业开发者</strong>
-                            <div>推荐: Mac Mini M4 Pro (48-64GB)</div>
-                            <div>价格: $1,399起</div>
+                            <strong>🥈 最佳中端：Mac Mini M4 Pro 48GB</strong>
+                            <div>价格: ~$1,800</div>
                             <div>适合: 32B-70B模型</div>
+                            <div>优势: 安静省电，维护简单</div>
                         </div>
                         <div class="model-size-card">
-                            <strong>🚀 AI研究者</strong>
-                            <div>推荐: Mac Studio M2 Ultra (128-192GB)</div>
-                            <div>价格: $3,999起</div>
-                            <div>适合: 120B-180B模型</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>⚡ 移动AI开发</strong>
-                            <div>推荐: MacBook Pro M4 Max (64-128GB)</div>
-                            <div>价格: $3,199起</div>
-                            <div>适合: 70B-120B模型</div>
-                        </div>
-                        <div class="model-size-card">
-                            <strong>🏆 顶级AI实验室</strong>
-                            <div>推荐: Mac Studio M3 Ultra (512GB)</div>
-                            <div>价格: ~$14,099</div>
-                            <div>适合: 600B+超大模型</div>
+                            <strong>🥉 最佳高端：Mac Studio M2 Ultra 192GB</strong>
+                            <div>价格: ~$6,000-8,000</div>
+                            <div>适合: 70B-180B模型</div>
+                            <div>优势: PC无法比拟的大内存</div>
                         </div>
                     </div>
                 </div>
 
+                <div class="model-guide">
+                    <h3>📊 按预算选择设备</h3>
+                    <div class="model-sizes">
+                        <div class="model-size-card">
+                            <strong>💵 预算 $600-1,000</strong>
+                            <div>推荐: Mac Mini M4 16GB ($599)</div>
+                            <div>或二手PC + RTX 4070</div>
+                            <div>适合: 学习和轻度开发</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>💰 预算 $1,500-2,500</strong>
+                            <div>首选: PC RTX 5070 Ti 配置</div>
+                            <div>备选: Mac Mini M4 Pro 24GB</div>
+                            <div>适合: 日常AI开发工作</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>💎 预算 $3,000-5,000</strong>
+                            <div>台式: PC RTX 5090 配置</div>
+                            <div>便携: MacBook Pro M4 Max 128GB</div>
+                            <div>适合: 专业AI工程师</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>💸 预算 $6,000-10,000</strong>
+                            <div>推荐: Mac Studio M2 Ultra 192GB</div>
+                            <div>或多卡PC (2x RTX 5090)</div>
+                            <div>适合: AI研究和生产</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>🏆 预算 $10,000+</strong>
+                            <div>终极: Mac Studio M3 Ultra 512GB</div>
+                            <div>或服务器级多卡配置</div>
+                            <div>适合: 顶级AI实验室</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="pros-cons-box">
+                        <h4>🍎 Mac设备推荐配置</h4>
+                        <ul class="pros-list">
+                            <li><strong>入门：</strong>Mac Mini M4 16GB ($599) - 学习用</li>
+                            <li><strong>进阶：</strong>Mac Mini M4 Pro 48GB ($1,800) - 日常开发</li>
+                            <li><strong>专业：</strong>Mac Studio M2 Ultra 128GB ($5,000) - 专业研究</li>
+                            <li><strong>便携：</strong>MacBook Pro M4 Max 64GB ($3,500) - 移动办公</li>
+                            <li><strong>终极：</strong>Mac Studio M3 Ultra 512GB ($14,000) - 超大模型</li>
+                        </ul>
+                    </div>
+
+                    <div class="pros-cons-box">
+                        <h4>🖥️ PC设备推荐配置</h4>
+                        <ul class="pros-list">
+                            <li><strong>入门：</strong>RTX 5070 12GB配置 ($1,300) - 学习用</li>
+                            <li><strong>主流：</strong>RTX 5070 Ti 16GB配置 ($1,800) ⭐推荐</li>
+                            <li><strong>高端：</strong>RTX 5080 16GB配置 ($2,500) - 专业开发</li>
+                            <li><strong>旗舰：</strong>RTX 5090 32GB配置 ($3,500) - 最大模型</li>
+                            <li><strong>多卡：</strong>2x RTX 5070 Ti ($5,000) - 生产部署</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="note">
-                    <strong>💰 性价比建议：</strong><br>
-                    • 最佳入门选择：Mac Mini M4 16GB ($599) - 性价比之王<br>
-                    • 最佳专业选择：Mac Mini M4 Pro 48GB ($1,799左右) - 可运行70B模型<br>
-                    • 移动首选：MacBook Pro M4 Max 64GB - 便携+高性能<br>
-                    • 终极选择：Mac Studio M3 Ultra 512GB - 可运行最大规模模型<br><br>
+                    <strong>💰 终极性价比建议：</strong><br>
+                    <strong>🎯 日常开发推荐：</strong>PC RTX 5070 Ti 配置 ($1,800) - 速度最快，性价比最高<br>
+                    <strong>🔬 研究推荐：</strong>Mac Studio M2 Ultra 192GB ($6,000-8,000) - 唯一能跑180B模型的选择<br>
+                    <strong>✈️ 移动推荐：</strong>MacBook Pro M4 Max 64GB ($3,500) - 便携+强大<br>
+                    <strong>🏆 土豪配置：</strong>Mac Studio M3 Ultra 512GB ($14,000) - 可运行600B+模型<br><br>
+
+                    <strong>🎓 学生/初学者特别推荐：</strong><br>
+                    如果预算有限，<strong>首选PC RTX 5070 Ti配置</strong>。可以获得：<br>
+                    • 最快的推理速度（是Mac的5-8倍）<br>
+                    • 成熟的CUDA生态和丰富的教程<br>
+                    • 可以随时升级显卡<br>
+                    • 整机预算仅$1,500-2,000<br><br>
+
                     <strong>⚠️ 重要提示：</strong><br>
-                    • 统一内存无法后期升级，建议一步到位<br>
-                    • 量化模型(4-bit/8-bit)可大幅降低内存需求<br>
-                    • 实际运行模型需考虑系统和应用内存占用，建议预留20-30%余量<br>
-                    • 价格仅供参考，以Apple官网和授权经销商实际价格为准
+                    • <strong>Mac：</strong>统一内存无法后期升级，建议一步到位<br>
+                    • <strong>PC：</strong>显卡可升级，可先买RTX 5070 Ti，后续换5090<br>
+                    • 量化模型(4-bit/8-bit)可大幅降低内存/显存需求<br>
+                    • 实际运行模型需考虑系统开销，建议预留20-30%余量<br>
+                    • 价格仅供参考，以官网和授权经销商实际价格为准<br>
+                    • <strong>速度优先选PC，内存优先选Mac，便携性选MacBook</strong>
                 </div>
             </div>
         </div>
