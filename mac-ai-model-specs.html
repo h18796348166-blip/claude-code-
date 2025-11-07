@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mac设备AI模型运行能力对比</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3b82f6;
+        }
+
+        .model-guide {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 5px solid #3b82f6;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .model-guide h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .model-sizes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .model-size-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .model-size-card strong {
+            color: #3b82f6;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .device-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .device-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid #e5e7eb;
+        }
+
+        .device-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .device-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .device-name {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+
+        .chip-badge {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .spec-table {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .spec-value {
+            color: #1f2937;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .price-tag {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        .model-capacity {
+            margin-top: 15px;
+            padding: 15px;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+        }
+
+        .model-capacity-title {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+
+        .model-capacity-list {
+            color: #78350f;
+            line-height: 1.6;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover {
+            background: #f9fafb;
+        }
+
+        .memory-bar {
+            height: 25px;
+            background: #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .memory-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75em;
+            font-weight: 600;
+            transition: width 1s ease-out;
+        }
+
+        .note {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            color: #78350f;
+        }
+
+        .note strong {
+            color: #92400e;
+        }
+
+        @media (max-width: 768px) {
+            .device-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .comparison-table {
+                font-size: 0.9em;
+            }
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍎 Mac设备AI模型运行能力对比</h1>
+            <p class="subtitle">Mac Mini / Mac Studio / MacBook Pro 全系列配置与AI模型适配指南 (2025年更新)</p>
+        </header>
+
+        <div class="content">
+            <!-- AI模型大小指南 -->
+            <div class="section">
+                <h2 class="section-title">📊 AI模型内存需求指南</h2>
+                <div class="model-guide">
+                    <h3>不同规模AI模型的统一内存需求（基于4-bit量化）</h3>
+                    <div class="model-sizes">
+                        <div class="model-size-card">
+                            <strong>7B参数模型</strong>
+                            <div>存储: 4-5GB</div>
+                            <div>运行: ~8-12GB</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>13-14B参数模型</strong>
+                            <div>存储: 8-10GB</div>
+                            <div>运行: ~16-20GB</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>32B参数模型</strong>
+                            <div>存储: 18-22GB</div>
+                            <div>运行: ~32-40GB</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>70B参数模型</strong>
+                            <div>存储: 40-45GB</div>
+                            <div>运行: ~64-80GB</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>600B+参数模型</strong>
+                            <div>存储: 300GB+</div>
+                            <div>运行: ~512GB+</div>
+                        </div>
+                    </div>
+                    <div class="note">
+                        <strong>注意：</strong> GPU默认可分配75%的统一内存。实际运行模型时需要考虑KV缓存和系统开销，建议预留额外20-30%内存。
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mac Mini系列 -->
+            <div class="section">
+                <h2 class="section-title">🖥️ Mac Mini 系列</h2>
+                <div class="device-grid">
+                    <!-- Mac Mini M2 基础版 -->
+                    <div class="device-card">
+                        <div class="device-header">
+                            <div class="device-name">Mac Mini M2</div>
+                            <div class="chip-badge">M2芯片</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">CPU核心</span>
+                                <span class="spec-value">8核 (4性能+4能效)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">GPU核心</span>
+                                <span class="spec-value">10核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">统一内存</span>
+                                <span class="spec-value">8GB / 16GB / 24GB</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">内存带宽</span>
+                                <span class="spec-value">100GB/s</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">起价: $599 (约¥4,300)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">可运行模型:</div>
+                            <div class="model-capacity-list">
+                                ✓ 8GB配置: 最大7B模型<br>
+                                ✓ 16GB配置: 最大13B模型<br>
+                                ✓ 24GB配置: 最大14B-32B模型
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mac Mini M2 Pro -->
+                    <div class="device-card">
+                        <div class="device-header">
+                            <div class="device-name">Mac Mini M2 Pro</div>
+                            <div class="chip-badge">M2 Pro</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">CPU核心</span>
+                                <span class="spec-value">10核/12核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">GPU核心</span>
+                                <span class="spec-value">16核/19核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">统一内存</span>
+                                <span class="spec-value">16GB / 32GB</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">内存带宽</span>
+                                <span class="spec-value">200GB/s</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">起价: $1,299 (约¥9,300)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">可运行模型:</div>
+                            <div class="model-capacity-list">
+                                ✓ 16GB配置: 最大13B模型<br>
+                                ✓ 32GB配置: 最大32B模型
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mac Mini M4 基础版 -->
+                    <div class="device-card">
+                        <div class="device-header">
+                            <div class="device-name">Mac Mini M4</div>
+                            <div class="chip-badge">M4芯片 ⭐新</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">CPU核心</span>
+                                <span class="spec-value">10核 (4性能+6能效)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">GPU核心</span>
+                                <span class="spec-value">10核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">统一内存</span>
+                                <span class="spec-value">16GB / 24GB / 32GB</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">内存带宽</span>
+                                <span class="spec-value">120GB/s (+20%)</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">起价: $599 (约¥4,300)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">可运行模型:</div>
+                            <div class="model-capacity-list">
+                                ✓ 16GB配置: 最大13B模型<br>
+                                ✓ 24GB配置: 最大32B模型<br>
+                                ✓ 32GB配置: 最大32B模型(流畅)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mac Mini M4 Pro -->
+                    <div class="device-card">
+                        <div class="device-header">
+                            <div class="device-name">Mac Mini M4 Pro</div>
+                            <div class="chip-badge">M4 Pro ⭐新</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">CPU核心</span>
+                                <span class="spec-value">12核/14核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">GPU核心</span>
+                                <span class="spec-value">16核/20核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">统一内存</span>
+                                <span class="spec-value">24GB / 48GB / 64GB</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">内存带宽</span>
+                                <span class="spec-value">273GB/s (+36%)</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">起价: $1,399 (约¥10,000)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">可运行模型:</div>
+                            <div class="model-capacity-list">
+                                ✓ 24GB配置: 最大32B模型<br>
+                                ✓ 48GB配置: 最大70B模型<br>
+                                ✓ 64GB配置: 70B模型(流畅)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mac Studio系列 -->
+            <div class="section">
+                <h2 class="section-title">🏢 Mac Studio 系列（工作站级）</h2>
+                <div class="device-grid">
+                    <!-- Mac Studio M2 Max -->
+                    <div class="device-card">
+                        <div class="device-header">
+                            <div class="device-name">Mac Studio M2 Max</div>
+                            <div class="chip-badge">M2 Max</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">CPU核心</span>
+                                <span class="spec-value">12核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">GPU核心</span>
+                                <span class="spec-value">30核/38核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">统一内存</span>
+                                <span class="spec-value">32GB / 64GB / 96GB</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">内存带宽</span>
+                                <span class="spec-value">400GB/s</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">起价: $1,999 (约¥14,300)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">可运行模型:</div>
+                            <div class="model-capacity-list">
+                                ✓ 32GB配置: 最大32B模型<br>
+                                ✓ 64GB配置: 70B模型<br>
+                                ✓ 96GB配置: 70B模型(流畅)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mac Studio M2 Ultra -->
+                    <div class="device-card">
+                        <div class="device-header">
+                            <div class="device-name">Mac Studio M2 Ultra</div>
+                            <div class="chip-badge">M2 Ultra</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">CPU核心</span>
+                                <span class="spec-value">24核 (16性能+8能效)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">GPU核心</span>
+                                <span class="spec-value">60核/76核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">统一内存</span>
+                                <span class="spec-value">64GB / 128GB / 192GB</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">内存带宽</span>
+                                <span class="spec-value">800GB/s</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">顶配: $8,799 (约¥63,000)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">可运行模型:</div>
+                            <div class="model-capacity-list">
+                                ✓ 64GB配置: 70B模型<br>
+                                ✓ 128GB配置: 120B模型<br>
+                                ✓ 192GB配置: 最大180B模型
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mac Studio M3 Ultra (2025) -->
+                    <div class="device-card">
+                        <div class="device-header">
+                            <div class="device-name">Mac Studio M3 Ultra</div>
+                            <div class="chip-badge">M3 Ultra ⭐2025</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">CPU核心</span>
+                                <span class="spec-value">24核+</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">GPU核心</span>
+                                <span class="spec-value">60核+</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">统一内存</span>
+                                <span class="spec-value">最高512GB</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">内存带宽</span>
+                                <span class="spec-value">819GB/s</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">顶配: $14,099 (约¥101,000)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">可运行模型:</div>
+                            <div class="model-capacity-list">
+                                ✓ 128GB配置: 120B模型<br>
+                                ✓ 256GB配置: 240B模型<br>
+                                ✓ 512GB配置: 600B+超大模型<br>
+                                <strong>🚀 可运行600B+参数的超大模型！</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MacBook Pro系列 -->
+            <div class="section">
+                <h2 class="section-title">💻 MacBook Pro 系列</h2>
+                <div class="device-grid">
+                    <!-- MacBook Pro M3 Max -->
+                    <div class="device-card">
+                        <div class="device-header">
+                            <div class="device-name">MacBook Pro M3 Max</div>
+                            <div class="chip-badge">M3 Max</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">CPU核心</span>
+                                <span class="spec-value">16核 (12性能+4能效)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">GPU核心</span>
+                                <span class="spec-value">40核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">统一内存</span>
+                                <span class="spec-value">48GB / 64GB / 128GB</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">尺寸</span>
+                                <span class="spec-value">14英寸 / 16英寸</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">起价: $3,199 (约¥23,000)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">可运行模型:</div>
+                            <div class="model-capacity-list">
+                                ✓ 48GB配置: 最大70B模型<br>
+                                ✓ 64GB配置: 70B模型(流畅)<br>
+                                ✓ 128GB配置: 120B模型
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MacBook Pro M4 -->
+                    <div class="device-card">
+                        <div class="device-header">
+                            <div class="device-name">MacBook Pro M4</div>
+                            <div class="chip-badge">M4 ⭐新</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">CPU核心</span>
+                                <span class="spec-value">10核 (4性能+6能效)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">GPU核心</span>
+                                <span class="spec-value">10核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">统一内存</span>
+                                <span class="spec-value">16GB / 24GB</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">尺寸</span>
+                                <span class="spec-value">14英寸</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">起价: $1,599 (约¥11,500)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">可运行模型:</div>
+                            <div class="model-capacity-list">
+                                ✓ 16GB配置: 最大13B模型<br>
+                                ✓ 24GB配置: 最大32B模型
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MacBook Pro M4 Pro -->
+                    <div class="device-card">
+                        <div class="device-header">
+                            <div class="device-name">MacBook Pro M4 Pro</div>
+                            <div class="chip-badge">M4 Pro ⭐新</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">CPU核心</span>
+                                <span class="spec-value">14核 (10性能+4能效)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">GPU核心</span>
+                                <span class="spec-value">20核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">统一内存</span>
+                                <span class="spec-value">24GB / 48GB</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">尺寸</span>
+                                <span class="spec-value">14英寸 / 16英寸</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">起价: $1,999 (约¥14,300)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">可运行模型:</div>
+                            <div class="model-capacity-list">
+                                ✓ 24GB配置: 最大32B模型<br>
+                                ✓ 48GB配置: 最大70B模型
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MacBook Pro M4 Max -->
+                    <div class="device-card">
+                        <div class="device-header">
+                            <div class="device-name">MacBook Pro M4 Max</div>
+                            <div class="chip-badge">M4 Max ⭐新</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">CPU核心</span>
+                                <span class="spec-value">14核 (10性能+4能效)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">GPU核心</span>
+                                <span class="spec-value">32核/40核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">统一内存</span>
+                                <span class="spec-value">36GB / 64GB / 128GB</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">尺寸</span>
+                                <span class="spec-value">14英寸 / 16英寸</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">起价: $3,199 (约¥23,000)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">可运行模型:</div>
+                            <div class="model-capacity-list">
+                                ✓ 36GB配置: 最大32B模型<br>
+                                ✓ 64GB配置: 70B模型<br>
+                                ✓ 128GB配置: 120B模型
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MacBook Pro M5 -->
+                    <div class="device-card">
+                        <div class="device-header">
+                            <div class="device-name">MacBook Pro M5</div>
+                            <div class="chip-badge">M5 🔥最新</div>
+                        </div>
+                        <div class="spec-table">
+                            <div class="spec-row">
+                                <span class="spec-label">CPU核心</span>
+                                <span class="spec-value">10核</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">GPU核心</span>
+                                <span class="spec-value">10核 + Neural加速器</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">统一内存</span>
+                                <span class="spec-value">16GB起</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">性能提升</span>
+                                <span class="spec-value">GPU快1.6倍 vs M4</span>
+                            </div>
+                        </div>
+                        <div class="price-tag">起价: $1,599 (约¥11,500)</div>
+                        <div class="model-capacity">
+                            <div class="model-capacity-title">可运行模型:</div>
+                            <div class="model-capacity-list">
+                                ✓ 16GB配置: 最大13B模型<br>
+                                ✓ AI性能提升显著<br>
+                                🔥 最新芯片，专为AI优化
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 综合对比表 -->
+            <div class="section">
+                <h2 class="section-title">📈 统一内存与AI模型能力对比表</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>统一内存容量</th>
+                            <th>可运行最大模型</th>
+                            <th>推荐使用场景</th>
+                            <th>性能表现</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>8GB</strong></td>
+                            <td>7B参数</td>
+                            <td>轻量级AI任务、代码辅助</td>
+                            <td>基础性能</td>
+                        </tr>
+                        <tr>
+                            <td><strong>16GB</strong></td>
+                            <td>13B参数</td>
+                            <td>中小型模型、日常开发</td>
+                            <td>流畅运行</td>
+                        </tr>
+                        <tr>
+                            <td><strong>24GB</strong></td>
+                            <td>14B-32B参数</td>
+                            <td>中型模型、专业开发</td>
+                            <td>高效运行</td>
+                        </tr>
+                        <tr>
+                            <td><strong>32GB</strong></td>
+                            <td>32B参数</td>
+                            <td>大型模型、AI研发</td>
+                            <td>流畅高效</td>
+                        </tr>
+                        <tr>
+                            <td><strong>48GB</strong></td>
+                            <td>70B参数</td>
+                            <td>超大模型、专业AI工作</td>
+                            <td>专业级性能</td>
+                        </tr>
+                        <tr>
+                            <td><strong>64GB</strong></td>
+                            <td>70B参数（流畅）</td>
+                            <td>超大模型流畅运行</td>
+                            <td>高性能</td>
+                        </tr>
+                        <tr>
+                            <td><strong>96-128GB</strong></td>
+                            <td>120B参数</td>
+                            <td>顶级模型、AI研究</td>
+                            <td>工作站级</td>
+                        </tr>
+                        <tr>
+                            <td><strong>192GB</strong></td>
+                            <td>180B参数</td>
+                            <td>超大规模模型</td>
+                            <td>顶级性能</td>
+                        </tr>
+                        <tr>
+                            <td><strong>512GB</strong></td>
+                            <td>600B+参数</td>
+                            <td>最大规模AI模型</td>
+                            <td>极致性能</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 性能对比可视化 -->
+            <div class="section">
+                <h2 class="section-title">📊 内存容量可视化对比</h2>
+                <div style="margin-top: 20px;">
+                    <div style="margin-bottom: 20px;">
+                        <strong>Mac Mini M4 Pro (64GB)</strong>
+                        <div class="memory-bar">
+                            <div class="memory-fill" style="width: 12.5%;">64GB</div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <strong>Mac Studio M2 Ultra (192GB)</strong>
+                        <div class="memory-bar">
+                            <div class="memory-fill" style="width: 37.5%;">192GB</div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <strong>Mac Studio M3 Ultra (512GB)</strong>
+                        <div class="memory-bar">
+                            <div class="memory-fill" style="width: 100%;">512GB - 最强配置</div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <strong>MacBook Pro M4 Max (128GB)</strong>
+                        <div class="memory-bar">
+                            <div class="memory-fill" style="width: 25%;">128GB</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 购买建议 -->
+            <div class="section">
+                <h2 class="section-title">💡 购买建议</h2>
+                <div class="model-guide">
+                    <h3>根据需求选择合适的Mac设备</h3>
+                    <div class="model-sizes">
+                        <div class="model-size-card">
+                            <strong>🎯 入门AI开发者</strong>
+                            <div>推荐: Mac Mini M4 (16-24GB)</div>
+                            <div>价格: $599起</div>
+                            <div>适合: 7B-32B模型</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>💼 专业开发者</strong>
+                            <div>推荐: Mac Mini M4 Pro (48-64GB)</div>
+                            <div>价格: $1,399起</div>
+                            <div>适合: 32B-70B模型</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>🚀 AI研究者</strong>
+                            <div>推荐: Mac Studio M2 Ultra (128-192GB)</div>
+                            <div>价格: $3,999起</div>
+                            <div>适合: 120B-180B模型</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>⚡ 移动AI开发</strong>
+                            <div>推荐: MacBook Pro M4 Max (64-128GB)</div>
+                            <div>价格: $3,199起</div>
+                            <div>适合: 70B-120B模型</div>
+                        </div>
+                        <div class="model-size-card">
+                            <strong>🏆 顶级AI实验室</strong>
+                            <div>推荐: Mac Studio M3 Ultra (512GB)</div>
+                            <div>价格: ~$14,099</div>
+                            <div>适合: 600B+超大模型</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <strong>💰 性价比建议：</strong><br>
+                    • 最佳入门选择：Mac Mini M4 16GB ($599) - 性价比之王<br>
+                    • 最佳专业选择：Mac Mini M4 Pro 48GB ($1,799左右) - 可运行70B模型<br>
+                    • 移动首选：MacBook Pro M4 Max 64GB - 便携+高性能<br>
+                    • 终极选择：Mac Studio M3 Ultra 512GB - 可运行最大规模模型<br><br>
+                    <strong>⚠️ 重要提示：</strong><br>
+                    • 统一内存无法后期升级，建议一步到位<br>
+                    • 量化模型(4-bit/8-bit)可大幅降低内存需求<br>
+                    • 实际运行模型需考虑系统和应用内存占用，建议预留20-30%余量<br>
+                    • 价格仅供参考，以Apple官网和授权经销商实际价格为准
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 添加简单的动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const memoryFills = document.querySelectorAll('.memory-fill');
+
+            // 延迟触发动画
+            setTimeout(() => {
+                memoryFills.forEach((fill, index) => {
+                    setTimeout(() => {
+                        fill.style.transition = 'width 1.5s ease-out';
+                    }, index * 200);
+                });
+            }, 500);
+
+            // 鼠标悬停效果
+            const deviceCards = document.querySelectorAll('.device-card');
+            deviceCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.borderColor = '#3b82f6';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.borderColor = '#e5e7eb';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
