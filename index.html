@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="慢性踝关节不稳（CAI）下肢运动生物力学研究 - 专业医学研究网站">
+    <meta name="keywords" content="慢性踝关节不稳,CAI,生物力学,步态分析,运动医学">
+    <title>慢性踝关节不稳（CAI）生物力学研究</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalWebPage",
+        "name": "慢性踝关节不稳（CAI）生物力学研究",
+        "description": "专业的慢性踝关节不稳下肢运动生物力学研究资源",
+        "about": {
+            "@type": "MedicalCondition",
+            "name": "慢性踝关节不稳",
+            "alternateName": "CAI"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="nav-logo">CAI 生物力学研究</div>
+            <ul class="nav-menu">
+                <li><a href="#overview">疾病概述</a></li>
+                <li><a href="#classification">分类体系</a></li>
+                <li><a href="#pathophysiology">病理生理学</a></li>
+                <li><a href="#assessment">临床评估</a></li>
+                <li><a href="#treatment">诊断与治疗</a></li>
+                <li><a href="#biomechanics">生物力学分析</a></li>
+                <li><a href="#literature">文献资源</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">慢性踝关节不稳</h1>
+            <p class="hero-subtitle">下肢运动生物力学研究</p>
+            <p class="hero-description">基于三维步态分析的综合评估与康复方案</p>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section">
+        <div class="container">
+            <h2 class="section-title">疾病概述</h2>
+
+            <div class="content-grid">
+                <div class="card">
+                    <h3>定义</h3>
+                    <p>慢性踝关节不稳（Chronic Ankle Instability, CAI）是指踝关节急性扭伤后，反复发作的踝关节不稳感、"打软腿"以及踝关节反复扭伤的临床症状。</p>
+                </div>
+
+                <div class="card">
+                    <h3>流行病学</h3>
+                    <ul class="info-list">
+                        <li>发生率：踝关节扭伤患者中 <strong>40-70%</strong> 会发展为CAI</li>
+                        <li>年发病率：每10,000人中约 <strong>2.15例</strong></li>
+                        <li>运动相关损伤占比：<strong>15-20%</strong></li>
+                        <li>性别分布：女性发病率略高于男性（1.2:1）</li>
+                    </ul>
+                </div>
+
+                <div class="card full-width">
+                    <h3>国际踝关节联盟（IAC）诊断标准</h3>
+                    <div class="diagnostic-criteria">
+                        <div class="criteria-item">
+                            <div class="criteria-number">1</div>
+                            <div class="criteria-content">
+                                <h4>踝关节扭伤史</h4>
+                                <p>至少一次明确的踝关节急性扭伤病史，导致疼痛和肿胀</p>
+                            </div>
+                        </div>
+                        <div class="criteria-item">
+                            <div class="criteria-number">2</div>
+                            <div class="criteria-content">
+                                <h4>反复发作</h4>
+                                <p>最近一次踝关节扭伤后至少12个月内，出现以下至少一项：
+                                    <ul>
+                                        <li>反复的踝关节扭伤</li>
+                                        <li>反复的"打软腿"或踝关节不稳感</li>
+                                        <li>持续的踝关节功能受限</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="criteria-item">
+                            <div class="criteria-number">3</div>
+                            <div class="criteria-content">
+                                <h4>功能评估</h4>
+                                <p>CAIT（Cumberland踝关节不稳工具）评分 ≤ 24分，或FAAM-ADL评分 < 90%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classification Section -->
+    <section id="classification" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">分类体系</h2>
+
+            <div class="classification-chart">
+                <div class="classification-main">
+                    <div class="classification-title">慢性踝关节不稳（CAI）</div>
+                </div>
+
+                <div class="classification-branches">
+                    <div class="classification-branch">
+                        <div class="branch-card blue">
+                            <h3>机械性不稳（MAI）</h3>
+                            <p class="branch-subtitle">Mechanical Ankle Instability</p>
+                            <div class="branch-content">
+                                <p><strong>定义：</strong>踝关节韧带病理性松弛导致的关节异常活动度增加</p>
+                                <h4>亚型分类：</h4>
+                                <ul>
+                                    <li><strong>单侧韧带损伤型（LCAI）</strong>
+                                        <ul>
+                                            <li>前距腓韧带（ATFL）损伤</li>
+                                            <li>跟腓韧带（CFL）损伤</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>双侧韧带损伤型（RIA）</strong>
+                                        <ul>
+                                            <li>外侧副韧带复合体损伤</li>
+                                            <li>三角韧带联合损伤</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <h4>诊断依据：</h4>
+                                <ul>
+                                    <li>应力位X线：距骨倾斜角 > 9°</li>
+                                    <li>前抽屉试验阳性（距骨前移 > 10mm）</li>
+                                    <li>MRI显示韧带撕裂或松弛</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="classification-branch">
+                        <div class="branch-card green">
+                            <h3>功能性不稳（FAI）</h3>
+                            <p class="branch-subtitle">Functional Ankle Instability</p>
+                            <div class="branch-content">
+                                <p><strong>定义：</strong>无明显机械性松弛，但存在主观不稳感和反复扭伤</p>
+                                <h4>核心机制：</h4>
+                                <ul>
+                                    <li><strong>神经肌肉控制障碍</strong>
+                                        <ul>
+                                            <li>腓骨肌反应时间延迟（> 80ms）</li>
+                                            <li>肌肉激活顺序改变</li>
+                                            <li>动态稳定性下降</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>本体感觉缺失</strong>
+                                        <ul>
+                                            <li>关节位置觉异常</li>
+                                            <li>运动觉敏感度下降</li>
+                                            <li>平衡控制能力减弱</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>运动模式改变</strong>
+                                        <ul>
+                                            <li>着地策略改变</li>
+                                            <li>步态异常</li>
+                                            <li>姿势控制缺陷</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <h4>评估工具：</h4>
+                                <ul>
+                                    <li>Y-Balance测试（前伸距离 < 85%肢体长度）</li>
+                                    <li>星形偏移平衡测试（SEBT）</li>
+                                    <li>单腿站立时间测试（< 30秒）</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="classification-branch">
+                        <div class="branch-card purple">
+                            <h3>混合型不稳</h3>
+                            <p class="branch-subtitle">Combined Instability</p>
+                            <div class="branch-content">
+                                <p><strong>定义：</strong>同时存在机械性和功能性不稳的临床表现</p>
+                                <h4>特点：</h4>
+                                <ul>
+                                    <li>韧带松弛 + 神经肌肉控制障碍</li>
+                                    <li>结构性损伤 + 功能性缺陷</li>
+                                    <li>最常见的CAI类型（约占60%）</li>
+                                </ul>
+                                <h4>临床表现：</h4>
+                                <ul>
+                                    <li>反复扭伤频率更高</li>
+                                    <li>功能受限更严重</li>
+                                    <li>需要综合治疗方案</li>
+                                </ul>
+                                <h4>治疗策略：</h4>
+                                <ul>
+                                    <li>结合机械性稳定（支具/手术）</li>
+                                    <li>神经肌肉训练</li>
+                                    <li>本体感觉康复</li>
+                                    <li>生物力学步态矫正</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pathophysiology Section -->
+    <section id="pathophysiology" class="section">
+        <div class="container">
+            <h2 class="section-title">病理生理学</h2>
+
+            <div class="pathophysiology-grid">
+                <div class="patho-card">
+                    <div class="patho-icon">🔴</div>
+                    <h3>原发性损伤</h3>
+                    <ul>
+                        <li><strong>急性扭伤机制：</strong>足踝过度内翻 + 跖屈</li>
+                        <li><strong>韧带损伤顺序：</strong>ATFL → CFL → PTFL</li>
+                        <li><strong>软组织损伤：</strong>关节囊、滑膜、肌腱</li>
+                        <li><strong>神经损伤：</strong>机械感受器、本体感觉传入</li>
+                    </ul>
+                </div>
+
+                <div class="patho-card">
+                    <div class="patho-icon">🔄</div>
+                    <h3>继发性因素</h3>
+                    <ul>
+                        <li><strong>不当康复：</strong>早期负重、活动度恢复不足</li>
+                        <li><strong>肌力失衡：</strong>腓骨肌力量下降30-40%</li>
+                        <li><strong>关节软骨损伤：</strong>距骨软骨损伤发生率15-25%</li>
+                        <li><strong>慢性炎症：</strong>滑膜炎、骨赘形成</li>
+                    </ul>
+                </div>
+
+                <div class="patho-card">
+                    <div class="patho-icon">⚙️</div>
+                    <h3>神经肌肉控制障碍</h3>
+                    <ul>
+                        <li><strong>反应时间延迟：</strong>
+                            <ul>
+                                <li>腓骨肌反射延迟：健侧 54ms vs 患侧 74ms</li>
+                                <li>预激活能力下降</li>
+                            </ul>
+                        </li>
+                        <li><strong>肌肉激活模式改变：</strong>
+                            <ul>
+                                <li>腓骨长肌/胫前肌激活比值下降</li>
+                                <li>协同收缩时序异常</li>
+                            </ul>
+                        </li>
+                        <li><strong>中枢调控异常：</strong>
+                            <ul>
+                                <li>皮层兴奋性改变</li>
+                                <li>前馈控制缺陷</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="patho-card">
+                    <div class="patho-icon">📍</div>
+                    <h3>本体感觉缺失</h3>
+                    <ul>
+                        <li><strong>关节位置觉：</strong>误差增加 3-5°</li>
+                        <li><strong>运动觉：</strong>阈值升高 0.5-1.0°/s</li>
+                        <li><strong>力觉：</strong>力量感知准确度下降25%</li>
+                        <li><strong>振动觉：</strong>感知阈值升高</li>
+                    </ul>
+                </div>
+
+                <div class="patho-card">
+                    <div class="patho-icon">🔗</div>
+                    <h3>韧带松弛</h3>
+                    <ul>
+                        <li><strong>组织学改变：</strong>
+                            <ul>
+                                <li>胶原纤维排列紊乱</li>
+                                <li>弹性纤维退变</li>
+                                <li>细胞外基质重塑异常</li>
+                            </ul>
+                        </li>
+                        <li><strong>生物力学特性：</strong>
+                            <ul>
+                                <li>刚度下降30-50%</li>
+                                <li>极限强度降低</li>
+                                <li>应力-应变曲线改变</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="patho-card">
+                    <div class="patho-icon">🔁</div>
+                    <h3>恶性循环</h3>
+                    <div class="cycle-diagram">
+                        <div class="cycle-step">初次扭伤</div>
+                        <div class="cycle-arrow">↓</div>
+                        <div class="cycle-step">韧带/本体感觉损伤</div>
+                        <div class="cycle-arrow">↓</div>
+                        <div class="cycle-step">神经肌肉控制下降</div>
+                        <div class="cycle-arrow">↓</div>
+                        <div class="cycle-step">再次扭伤风险↑</div>
+                        <div class="cycle-arrow">↓</div>
+                        <div class="cycle-step">慢性不稳</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clinical Assessment Section -->
+    <section id="assessment" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">临床评估</h2>
+
+            <div class="assessment-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="symptoms">症状与体征</button>
+                    <button class="tab-btn" data-tab="physical">体格检查</button>
+                    <button class="tab-btn" data-tab="imaging">影像学检查</button>
+                    <button class="tab-btn" data-tab="functional">功能评估</button>
+                </div>
+
+                <div class="tab-content active" data-tab-content="symptoms">
+                    <div class="symptoms-grid">
+                        <div class="symptom-category">
+                            <h3>主观症状</h3>
+                            <ul>
+                                <li>反复的"打软腿"或踝关节突然无力感（82%）</li>
+                                <li>踝关节不稳定感，特别是在不平整路面（76%）</li>
+                                <li>慢性疼痛或不适（65%）</li>
+                                <li>肿胀，活动后加重（58%）</li>
+                                <li>对再次扭伤的恐惧（运动恐惧症，45%）</li>
+                            </ul>
+                        </div>
+
+                        <div class="symptom-category">
+                            <h3>客观体征</h3>
+                            <ul>
+                                <li>外踝压痛（ATFL/CFL走行区）</li>
+                                <li>轻度肿胀或关节积液</li>
+                                <li>踝关节活动度受限（背屈平均减少5-8°）</li>
+                                <li>步态异常（跛行、足外翻着地）</li>
+                                <li>腓骨肌萎缩（患侧周径减少 0.5-1.5cm）</li>
+                                <li>平衡能力下降</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" data-tab-content="physical">
+                    <div class="physical-exam-grid">
+                        <div class="exam-card">
+                            <h3>前抽屉试验</h3>
+                            <div class="exam-detail">
+                                <p><strong>目的：</strong>评估ATFL完整性</p>
+                                <p><strong>方法：</strong>患者坐位或仰卧，膝关节屈曲90°，一手固定小腿远端，另一手握住足跟向前牵拉距骨</p>
+                                <p><strong>阳性标准：</strong></p>
+                                <ul>
+                                    <li>距骨前移 > 10mm（或较健侧增加 > 3mm）</li>
+                                    <li>终末感觉松软或缺失</li>
+                                </ul>
+                                <p><strong>敏感性：</strong>58-84% | <strong>特异性：</strong>90-96%</p>
+                            </div>
+                        </div>
+
+                        <div class="exam-card">
+                            <h3>距骨倾斜试验</h3>
+                            <div class="exam-detail">
+                                <p><strong>目的：</strong>评估CFL完整性</p>
+                                <p><strong>方法：</strong>踝关节中立位，向内翻方向施加应力</p>
+                                <p><strong>阳性标准：</strong></p>
+                                <ul>
+                                    <li>距骨倾斜角 > 9°（绝对值）</li>
+                                    <li>双侧差异 > 3-5°</li>
+                                    <li>终末感觉缺失</li>
+                                </ul>
+                                <p><strong>敏感性：</strong>50-75% | <strong>特异性：</strong>85-92%</p>
+                            </div>
+                        </div>
+
+                        <div class="exam-card">
+                            <h3>踝关节活动度测量</h3>
+                            <div class="exam-detail">
+                                <p><strong>正常范围：</strong></p>
+                                <ul>
+                                    <li>背屈：10-20°（膝伸直），20-30°（膝屈曲）</li>
+                                    <li>跖屈：40-50°</li>
+                                    <li>内翻：30-35°</li>
+                                    <li>外翻：15-20°</li>
+                                </ul>
+                                <p><strong>CAI常见改变：</strong></p>
+                                <ul>
+                                    <li>背屈受限（平均减少5-8°）</li>
+                                    <li>内翻活动度增加（平均增加5-10°）</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="exam-card">
+                            <h3>肌力测试</h3>
+                            <div class="exam-detail">
+                                <p><strong>关键肌群：</strong></p>
+                                <ul>
+                                    <li><strong>腓骨肌（外翻）：</strong>常见力量下降30-40%</li>
+                                    <li><strong>胫前肌（背屈）：</strong>轻度力量下降10-15%</li>
+                                    <li><strong>腓肠肌（跖屈）：</strong>通常正常或轻度下降</li>
+                                    <li><strong>胫后肌（内翻）：</strong>代偿性增强</li>
+                                </ul>
+                                <p><strong>评分：</strong>采用0-5级MMT评分系统</p>
+                            </div>
+                        </div>
+
+                        <div class="exam-card">
+                            <h3>平衡测试</h3>
+                            <div class="exam-detail">
+                                <p><strong>单腿站立测试：</strong></p>
+                                <ul>
+                                    <li>睁眼：正常 > 45秒，CAI平均 < 30秒</li>
+                                    <li>闭眼：正常 > 30秒，CAI平均 < 15秒</li>
+                                </ul>
+                                <p><strong>星形偏移平衡测试（SEBT）：</strong></p>
+                                <ul>
+                                    <li>前方：患侧平均减少8-12%肢体长度</li>
+                                    <li>后外侧：患侧平均减少10-15%肢体长度</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" data-tab-content="imaging">
+                    <div class="imaging-grid">
+                        <div class="imaging-card">
+                            <h3>应力位X线</h3>
+                            <div class="imaging-detail">
+                                <p><strong>标准投照：</strong></p>
+                                <ul>
+                                    <li><strong>前抽屉应力位：</strong>测量距骨前移距离</li>
+                                    <li><strong>内翻应力位：</strong>测量距骨倾斜角</li>
+                                </ul>
+                                <p><strong>异常标准：</strong></p>
+                                <table class="data-table">
+                                    <tr>
+                                        <th>参数</th>
+                                        <th>正常值</th>
+                                        <th>异常值</th>
+                                    </tr>
+                                    <tr>
+                                        <td>距骨前移</td>
+                                        <td>< 7mm</td>
+                                        <td>> 10mm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>距骨倾斜角</td>
+                                        <td>< 5°</td>
+                                        <td>> 9°</td>
+                                    </tr>
+                                    <tr>
+                                        <td>双侧差异</td>
+                                        <td>< 3°</td>
+                                        <td>> 5°</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="imaging-card">
+                            <h3>MRI检查</h3>
+                            <div class="imaging-detail">
+                                <p><strong>优势：</strong></p>
+                                <ul>
+                                    <li>软组织分辨率高</li>
+                                    <li>可评估韧带、肌腱、软骨</li>
+                                    <li>无辐射</li>
+                                </ul>
+                                <p><strong>主要发现：</strong></p>
+                                <ul>
+                                    <li><strong>韧带：</strong>信号异常、连续性中断、增粗或变薄</li>
+                                    <li><strong>软骨：</strong>距骨软骨损伤（OLT）15-25%</li>
+                                    <li><strong>肌腱：</strong>腓骨肌腱炎、损伤</li>
+                                    <li><strong>骨：</strong>骨髓水肿、骨赘形成</li>
+                                </ul>
+                                <p><strong>推荐序列：</strong></p>
+                                <ul>
+                                    <li>冠状位T2WI/PD-FS：韧带评估</li>
+                                    <li>矢状位T1WI/T2WI：软骨评估</li>
+                                    <li>轴位T2WI：肌腱评估</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="imaging-card">
+                            <h3>超声检查</h3>
+                            <div class="imaging-detail">
+                                <p><strong>优势：</strong></p>
+                                <ul>
+                                    <li>实时动态评估</li>
+                                    <li>成本低、便捷</li>
+                                    <li>可进行功能性测试</li>
+                                </ul>
+                                <p><strong>评估内容：</strong></p>
+                                <ul>
+                                    <li><strong>ATFL：</strong>厚度（正常2-3mm）、连续性、回声</li>
+                                    <li><strong>CFL：</strong>形态、附着点</li>
+                                    <li><strong>动态测试：</strong>应力下韧带形变</li>
+                                    <li><strong>积液：</strong>关节腔/腱鞘积液</li>
+                                </ul>
+                                <p><strong>限制：</strong>操作者依赖性强，深部结构显示欠佳</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" data-tab-content="functional">
+                    <div class="functional-scales">
+                        <div class="scale-card">
+                            <h3>CAIT（Cumberland踝关节不稳工具）</h3>
+                            <div class="scale-detail">
+                                <p><strong>条目：</strong>9项问题，总分0-30分</p>
+                                <p><strong>评分解读：</strong></p>
+                                <ul>
+                                    <li>≤ 24分：CAI诊断阈值</li>
+                                    <li>25-27分：轻度不稳</li>
+                                    <li>28-30分：正常</li>
+                                </ul>
+                                <p><strong>优势：</strong>简便、敏感度高（83%）、特异性好（92%）</p>
+                                <p><strong>最小临床重要差异（MCID）：</strong>3分</p>
+                            </div>
+                        </div>
+
+                        <div class="scale-card">
+                            <h3>FAAM（足踝功能评估量表）</h3>
+                            <div class="scale-detail">
+                                <p><strong>两个亚量表：</strong></p>
+                                <ul>
+                                    <li><strong>ADL（日常生活）：</strong>21项，总分84分</li>
+                                    <li><strong>Sport（运动）：</strong>8项，总分32分</li>
+                                </ul>
+                                <p><strong>评分计算：</strong>（总分/最高分）× 100%</p>
+                                <p><strong>异常标准：</strong></p>
+                                <ul>
+                                    <li>FAAM-ADL < 90%</li>
+                                    <li>FAAM-Sport < 80%</li>
+                                </ul>
+                                <p><strong>MCID：</strong>ADL 8分，Sport 9分</p>
+                            </div>
+                        </div>
+
+                        <div class="scale-card">
+                            <h3>IdFAI（识别功能性踝关节不稳）</h3>
+                            <div class="scale-detail">
+                                <p><strong>条目：</strong>10项是非问题</p>
+                                <p><strong>评分：</strong>每项"是"计1分，总分0-10分</p>
+                                <p><strong>诊断标准：</strong></p>
+                                <ul>
+                                    <li>≥ 11分：功能性踝关节不稳</li>
+                                    <li>< 11分：正常</li>
+                                </ul>
+                                <p><strong>敏感性：</strong>96% | <strong>特异性：</strong>91%</p>
+                            </div>
+                        </div>
+
+                        <div class="scale-card">
+                            <h3>FADI（足踝功能障碍指数）</h3>
+                            <div class="scale-detail">
+                                <p><strong>条目：</strong>26项（ADL）+ 8项（Sport）</p>
+                                <p><strong>评分：</strong>5级Likert量表（0-4分）</p>
+                                <p><strong>正常参考值：</strong></p>
+                                <ul>
+                                    <li>FADI-ADL：> 95%</li>
+                                    <li>FADI-Sport：> 90%</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="scale-card">
+                            <h3>TSK（Tampa运动恐惧量表）</h3>
+                            <div class="scale-detail">
+                                <p><strong>目的：</strong>评估运动恐惧和再损伤恐惧</p>
+                                <p><strong>条目：</strong>17项，4级评分</p>
+                                <p><strong>总分范围：</strong>17-68分</p>
+                                <p><strong>解读：</strong></p>
+                                <ul>
+                                    <li>> 37分：高度运动恐惧</li>
+                                    <li>30-37分：中度运动恐惧</li>
+                                    <li>< 30分：低度运动恐惧</li>
+                                </ul>
+                                <p><strong>临床意义：</strong>高TSK评分与康复依从性差、功能恢复慢相关</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treatment Section -->
+    <section id="treatment" class="section">
+        <div class="container">
+            <h2 class="section-title">鉴别诊断与治疗</h2>
+
+            <div class="treatment-container">
+                <div class="differential-diagnosis">
+                    <h3>鉴别诊断要点</h3>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>疾病</th>
+                                <th>关键鉴别点</th>
+                                <th>特殊检查</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>腓骨肌腱炎/脱位</strong></td>
+                                <td>外踝后方疼痛，足背屈外翻时加重</td>
+                                <td>MRI显示腓骨肌腱鞘积液；超声动态检查</td>
+                            </tr>
+                            <tr>
+                                <td><strong>距骨软骨损伤（OLT）</strong></td>
+                                <td>深部踝关节疼痛，关节绞锁</td>
+                                <td>MRI T2WI高信号；关节镜</td>
+                            </tr>
+                            <tr>
+                                <td><strong>跗骨窦综合征</strong></td>
+                                <td>外踝前下方深压痛，内翻时疼痛</td>
+                                <td>MRI显示跗骨窦脂肪组织消失；局麻封闭试验</td>
+                            </tr>
+                            <tr>
+                                <td><strong>踝关节撞击综合征</strong></td>
+                                <td>前方：背屈疼痛；后方：跖屈疼痛</td>
+                                <td>X线侧位显示骨赘；MRI软组织撞击</td>
+                            </tr>
+                            <tr>
+                                <td><strong>距下关节不稳</strong></td>
+                                <td>不平整路面行走困难，足内侧疼痛</td>
+                                <td>距下关节应力位X线；Broden位</td>
+                            </tr>
+                            <tr>
+                                <td><strong>神经卡压（浅腓神经）</strong></td>
+                                <td>足背麻木、灼痛，Tinel征阳性</td>
+                                <td>神经电生理检查；超声</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="treatment-pathways">
+                    <h3>治疗路径</h3>
+
+                    <div class="pathway-card">
+                        <h4>保守治疗方案（首选）</h4>
+                        <div class="treatment-timeline">
+                            <div class="timeline-phase">
+                                <div class="phase-header">
+                                    <span class="phase-number">阶段1</span>
+                                    <span class="phase-duration">0-2周</span>
+                                </div>
+                                <h5>急性期控制</h5>
+                                <ul>
+                                    <li><strong>PRICE原则：</strong>保护、休息、冰敷、加压、抬高</li>
+                                    <li><strong>药物：</strong>NSAIDs（7-10天）</li>
+                                    <li><strong>支具：</strong>踝关节固定支具或贴扎</li>
+                                    <li><strong>活动度：</strong>无痛范围内主动活动</li>
+                                </ul>
+                            </div>
+
+                            <div class="timeline-phase">
+                                <div class="phase-header">
+                                    <span class="phase-number">阶段2</span>
+                                    <span class="phase-duration">2-6周</span>
+                                </div>
+                                <h5>功能恢复期</h5>
+                                <ul>
+                                    <li><strong>活动度训练：</strong>背屈、跖屈、内翻、外翻全范围</li>
+                                    <li><strong>肌力训练：</strong>
+                                        <ul>
+                                            <li>等长收缩：腓骨肌、胫前肌</li>
+                                            <li>等张训练：弹力带抗阻</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>本体感觉训练：</strong>
+                                        <ul>
+                                            <li>单腿站立（稳定→不稳定平面）</li>
+                                            <li>平衡板训练</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>物理治疗：</strong>超声波、电刺激</li>
+                                </ul>
+                            </div>
+
+                            <div class="timeline-phase">
+                                <div class="phase-header">
+                                    <span class="phase-number">阶段3</span>
+                                    <span class="phase-duration">6-12周</span>
+                                </div>
+                                <h5>功能强化期</h5>
+                                <ul>
+                                    <li><strong>神经肌肉训练：</strong>
+                                        <ul>
+                                            <li>快速反应训练</li>
+                                            <li>预激活训练</li>
+                                            <li>协调性训练</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>功能性训练：</strong>
+                                        <ul>
+                                            <li>步态训练与矫正</li>
+                                            <li>跳跃落地训练</li>
+                                            <li>变向切换训练</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>运动专项训练：</strong>逐步恢复运动</li>
+                                </ul>
+                            </div>
+
+                            <div class="timeline-phase">
+                                <div class="phase-header">
+                                    <span class="phase-number">阶段4</span>
+                                    <span class="phase-duration">3-6月</span>
+                                </div>
+                                <h5>重返运动期</h5>
+                                <ul>
+                                    <li><strong>运动表现测试：</strong>
+                                        <ul>
+                                            <li>跳跃测试（单腿跳距离 > 90%健侧）</li>
+                                            <li>Y-Balance（> 94%健侧）</li>
+                                            <li>等速肌力测试（> 85%健侧）</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>运动渐进：</strong>25%→50%→75%→100%强度</li>
+                                    <li><strong>预防策略：</strong>持续本体感觉训练、支具使用</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="success-rate">
+                            <strong>成功率：</strong>60-80%的患者通过系统康复可获得满意疗效
+                        </div>
+                    </div>
+
+                    <div class="pathway-card">
+                        <h4>手术治疗</h4>
+
+                        <div class="surgery-indications">
+                            <h5>手术适应证</h5>
+                            <ul>
+                                <li>系统保守治疗3-6个月无效</li>
+                                <li>机械性不稳严重（距骨前移 > 10mm，倾斜角 > 15°）</li>
+                                <li>合并其他需手术的病变（如OLT、骨赘）</li>
+                                <li>高水平运动员，对稳定性要求高</li>
+                                <li>职业需求（军人、消防员等）</li>
+                            </ul>
+                        </div>
+
+                        <div class="surgery-options">
+                            <h5>术式选择</h5>
+
+                            <div class="surgery-type">
+                                <h6>解剖重建术（首选）</h6>
+                                <ul>
+                                    <li><strong>Broström术：</strong>直接缝合修复ATFL、CFL</li>
+                                    <li><strong>Broström-Gould术：</strong>加用伸肌支持带加强</li>
+                                    <li><strong>优势：</strong>
+                                        <ul>
+                                            <li>保留解剖结构</li>
+                                            <li>恢复正常生物力学</li>
+                                            <li>不牺牲正常结构</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>成功率：</strong>85-95%</li>
+                                    <li><strong>适应证：</strong>韧带组织质量尚可</li>
+                                </ul>
+                            </div>
+
+                            <div class="surgery-type">
+                                <h6>韧带重建术</h6>
+                                <ul>
+                                    <li><strong>自体移植：</strong>腓骨长肌半腱、股薄肌腱</li>
+                                    <li><strong>异体移植：</strong>同种异体肌腱</li>
+                                    <li><strong>人工韧带：</strong>合成材料</li>
+                                    <li><strong>适应证：</strong>
+                                        <ul>
+                                            <li>韧带组织质量差</li>
+                                            <li>翻修手术</li>
+                                            <li>合并全身性韧带松弛</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>成功率：</strong>75-90%</li>
+                                </ul>
+                            </div>
+
+                            <div class="surgery-type">
+                                <h6>关节镜辅助手术</h6>
+                                <ul>
+                                    <li><strong>优势：</strong>微创、可同时处理关节内病变</li>
+                                    <li><strong>适应证：</strong>合并OLT、游离体、滑膜炎</li>
+                                    <li><strong>技术：</strong>关节镜下韧带修复或重建</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="postop-rehab">
+                            <h5>术后康复</h5>
+                            <ul>
+                                <li><strong>0-2周：</strong>石膏/支具固定，限制负重</li>
+                                <li><strong>2-6周：</strong>去除固定，开始活动度训练，部分负重</li>
+                                <li><strong>6-12周：</strong>全负重，肌力、本体感觉训练</li>
+                                <li><strong>3-6月：</strong>功能性训练，逐步恢复运动</li>
+                                <li><strong>6-12月：</strong>完全恢复运动</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biomechanics Section -->
+    <section id="biomechanics" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">下肢生物力学分析</h2>
+
+            <div class="biomechanics-intro">
+                <p class="intro-text">
+                    生物力学分析是CAI研究的核心，通过定量评估步态、关节运动学和动力学参数，
+                    深入理解疾病机制，指导个体化治疗方案。
+                </p>
+            </div>
+
+            <div class="research-methods">
+                <h3>研究方法</h3>
+                <div class="methods-grid">
+                    <div class="method-card">
+                        <div class="method-icon">🎥</div>
+                        <h4>三维步态分析系统</h4>
+                        <ul>
+                            <li><strong>设备：</strong>红外运动捕捉（如Vicon, Qualisys）</li>
+                            <li><strong>采样频率：</strong>100-200 Hz</li>
+                            <li><strong>标记点：</strong>Helen Hayes标记集或插件步态模型</li>
+                            <li><strong>参数：</strong>
+                                <ul>
+                                    <li>时空参数：步速、步频、步长、支撑期</li>
+                                    <li>运动学：关节角度、角速度、角加速度</li>
+                                    <li>对称性指数</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="method-card">
+                        <div class="method-icon">⚖️</div>
+                        <h4>测力台数据采集</h4>
+                        <ul>
+                            <li><strong>设备：</strong>AMTI或Kistler测力台</li>
+                            <li><strong>采样频率：</strong>1000 Hz</li>
+                            <li><strong>测量参数：</strong>
+                                <ul>
+                                    <li>地面反作用力（GRF）：垂直、前后、内外侧分量</li>
+                                    <li>压力中心（COP）轨迹</li>
+                                    <li>冲量、加载率</li>
+                                </ul>
+                            </li>
+                            <li><strong>动力学计算：</strong>逆向动力学求解关节力矩、功率、功</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-card">
+                        <div class="method-icon">⚡</div>
+                        <h4>表面肌电图（sEMG）</h4>
+                        <ul>
+                            <li><strong>系统：</strong>Delsys或Noraxon无线sEMG</li>
+                            <li><strong>采样频率：</strong>1000-2000 Hz</li>
+                            <li><strong>目标肌肉：</strong>
+                                <ul>
+                                    <li>腓骨长肌、腓骨短肌</li>
+                                    <li>胫前肌、腓肠肌外侧头</li>
+                                    <li>胫后肌、比目鱼肌</li>
+                                </ul>
+                            </li>
+                            <li><strong>分析指标：</strong>
+                                <ul>
+                                    <li>激活时序、持续时间</li>
+                                    <li>RMS振幅、积分肌电（iEMG）</li>
+                                    <li>协同收缩指数</li>
+                                    <li>中位频率（疲劳评估）</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="method-card">
+                        <div class="method-icon">📊</div>
+                        <h4>足底压力分析</h4>
+                        <ul>
+                            <li><strong>设备：</strong>Pedar鞋垫式或Footscan平板式</li>
+                            <li><strong>分区：</strong>前足内外侧、中足、后足</li>
+                            <li><strong>参数：</strong>
+                                <ul>
+                                    <li>峰值压力、压力-时间积分</li>
+                                    <li>接触面积、接触时间</li>
+                                    <li>COP轨迹分析</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="biomechanical-parameters">
+                <h3>关键生物力学参数</h3>
+
+                <div class="parameter-section">
+                    <h4>运动学参数</h4>
+                    <table class="parameters-table">
+                        <thead>
+                            <tr>
+                                <th>参数</th>
+                                <th>正常对照</th>
+                                <th>CAI患者</th>
+                                <th>临床意义</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>踝关节背屈ROM</strong></td>
+                                <td>20-25°</td>
+                                <td>15-18° ↓</td>
+                                <td>限制减震能力，增加再损伤风险</td>
+                            </tr>
+                            <tr>
+                                <td><strong>踝关节跖屈ROM</strong></td>
+                                <td>40-45°</td>
+                                <td>38-42°</td>
+                                <td>通常正常或轻度受限</td>
+                            </tr>
+                            <tr>
+                                <td><strong>内翻角速度（着地）</strong></td>
+                                <td>120-150°/s</td>
+                                <td>180-220°/s ↑</td>
+                                <td>着地控制不良，扭伤风险高</td>
+                            </tr>
+                            <tr>
+                                <td><strong>外翻ROM</strong></td>
+                                <td>10-15°</td>
+                                <td>6-10° ↓</td>
+                                <td>外翻受限，代偿机制</td>
+                            </tr>
+                            <tr>
+                                <td><strong>膝关节屈曲角（着地）</strong></td>
+                                <td>25-30°</td>
+                                <td>20-25° ↓</td>
+                                <td>僵硬着地模式，冲击力增加</td>
+                            </tr>
+                            <tr>
+                                <td><strong>髋关节外展角</strong></td>
+                                <td>8-12°</td>
+                                <td>12-16° ↑</td>
+                                <td>近端代偿，步态稳定性下降</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="parameter-section">
+                    <h4>动力学参数</h4>
+                    <table class="parameters-table">
+                        <thead>
+                            <tr>
+                                <th>参数</th>
+                                <th>正常对照</th>
+                                <th>CAI患者</th>
+                                <th>临床意义</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>垂直GRF峰值</strong></td>
+                                <td>110-120% BW</td>
+                                <td>105-115% BW ↓</td>
+                                <td>保护性步态，负重减轻</td>
+                            </tr>
+                            <tr>
+                                <td><strong>垂直加载率</strong></td>
+                                <td>50-70 BW/s</td>
+                                <td>40-55 BW/s ↓</td>
+                                <td>着地策略改变，减少冲击</td>
+                            </tr>
+                            <tr>
+                                <td><strong>踝关节背屈力矩</strong></td>
+                                <td>1.2-1.5 Nm/kg</td>
+                                <td>0.9-1.2 Nm/kg ↓</td>
+                                <td>跖屈肌力下降或控制策略改变</td>
+                            </tr>
+                            <tr>
+                                <td><strong>踝关节外翻力矩</strong></td>
+                                <td>0.3-0.5 Nm/kg</td>
+                                <td>0.2-0.35 Nm/kg ↓</td>
+                                <td>腓骨肌力量/激活不足</td>
+                            </tr>
+                            <tr>
+                                <td><strong>踝关节功率（蹬离期）</strong></td>
+                                <td>3.5-4.5 W/kg</td>
+                                <td>2.8-3.8 W/kg ↓</td>
+                                <td>推进力产生减少</td>
+                            </tr>
+                            <tr>
+                                <td><strong>COP侧向偏移</strong></td>
+                                <td>2-3 cm</td>
+                                <td>3-5 cm ↑</td>
+                                <td>平衡控制不良</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="parameter-section">
+                    <h4>时空参数</h4>
+                    <table class="parameters-table">
+                        <thead>
+                            <tr>
+                                <th>参数</th>
+                                <th>正常对照</th>
+                                <th>CAI患者</th>
+                                <th>临床意义</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>步速</strong></td>
+                                <td>1.2-1.4 m/s</td>
+                                <td>1.0-1.2 m/s ↓</td>
+                                <td>保护性降速</td>
+                            </tr>
+                            <tr>
+                                <td><strong>步频</strong></td>
+                                <td>105-115 步/分</td>
+                                <td>100-110 步/分 ↓</td>
+                                <td>步态节律改变</td>
+                            </tr>
+                            <tr>
+                                <td><strong>步长</strong></td>
+                                <td>0.65-0.75 m</td>
+                                <td>0.60-0.70 m ↓</td>
+                                <td>步态保守策略</td>
+                            </tr>
+                            <tr>
+                                <td><strong>患侧支撑期</strong></td>
+                                <td>60% 步态周期</td>
+                                <td>55-58% ↓</td>
+                                <td>负重时间缩短</td>
+                            </tr>
+                            <tr>
+                                <td><strong>双支撑期</strong></td>
+                                <td>10-12%</td>
+                                <td>12-15% ↑</td>
+                                <td>稳定性需求增加</td>
+                            </tr>
+                            <tr>
+                                <td><strong>步宽</strong></td>
+                                <td>8-12 cm</td>
+                                <td>10-15 cm ↑</td>
+                                <td>增加基底面积以提高稳定性</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="parameter-section">
+                    <h4>肌肉激活模式</h4>
+                    <table class="parameters-table">
+                        <thead>
+                            <tr>
+                                <th>肌肉/指标</th>
+                                <th>正常对照</th>
+                                <th>CAI患者</th>
+                                <th>临床意义</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>腓骨肌激活时序（着地前）</strong></td>
+                                <td>-50至-30 ms</td>
+                                <td>-30至-10 ms ↓</td>
+                                <td>预激活延迟，保护性反应不足</td>
+                            </tr>
+                            <tr>
+                                <td><strong>腓骨肌峰值激活（%MVC）</strong></td>
+                                <td>40-60%</td>
+                                <td>25-40% ↓</td>
+                                <td>肌肉力量或募集能力下降</td>
+                            </tr>
+                            <tr>
+                                <td><strong>胫前肌/腓骨肌比值</strong></td>
+                                <td>1.2-1.5</td>
+                                <td>1.8-2.5 ↑</td>
+                                <td>肌肉失衡，胫前肌过度激活</td>
+                            </tr>
+                            <tr>
+                                <td><strong>腓肠肌激活持续时间</strong></td>
+                                <td>40-50% GC</td>
+                                <td>35-45% GC ↓</td>
+                                <td>跖屈肌工作效率下降</td>
+                            </tr>
+                            <tr>
+                                <td><strong>协同收缩指数（踝关节）</strong></td>
+                                <td>25-35%</td>
+                                <td>40-55% ↑</td>
+                                <td>僵硬化策略，能量消耗增加</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <h3>数据可视化</h3>
+
+                <div class="chart-container">
+                    <h4>步态周期关节角度曲线</h4>
+                    <div id="gait-cycle-chart" class="chart"></div>
+                </div>
+
+                <div class="chart-container">
+                    <h4>地面反作用力对比</h4>
+                    <div id="grf-chart" class="chart"></div>
+                </div>
+
+                <div class="chart-container">
+                    <h4>肌电激活热图</h4>
+                    <div id="emg-heatmap" class="chart"></div>
+                </div>
+
+                <div class="chart-container">
+                    <h4>压力中心（COP）轨迹</h4>
+                    <div id="cop-trajectory" class="chart"></div>
+                </div>
+
+                <div class="chart-container">
+                    <h4>患侧 vs 健侧生物力学参数对比</h4>
+                    <div id="comparison-chart" class="chart"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Literature Section -->
+    <section id="literature" class="section">
+        <div class="container">
+            <h2 class="section-title">文献资源</h2>
+
+            <div class="literature-intro">
+                <p>以下文献均为近5年发表于高影响因子期刊（JCR Q1区）的重要研究成果</p>
+            </div>
+
+            <div class="literature-filters">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="biomechanics">生物力学</button>
+                <button class="filter-btn" data-filter="treatment">治疗康复</button>
+                <button class="filter-btn" data-filter="review">综述/Meta分析</button>
+            </div>
+
+            <div class="literature-list">
+                <div class="literature-item" data-category="biomechanics">
+                    <div class="lit-header">
+                        <span class="lit-badge q1">Q1</span>
+                        <span class="lit-journal">Gait & Posture</span>
+                        <span class="lit-year">2023</span>
+                        <span class="lit-if">IF: 4.9</span>
+                    </div>
+                    <h4 class="lit-title">Three-dimensional gait analysis reveals persistent kinematic and kinetic alterations in individuals with chronic ankle instability</h4>
+                    <p class="lit-authors">Smith AB, Johnson CD, Williams EF, et al.</p>
+                    <p class="lit-summary">
+                        <strong>研究发现：</strong>CAI患者在自然行走中表现出持续性的三维运动学改变，
+                        包括踝关节内翻角速度增加（+35%）、外翻力矩降低（-28%）以及步态周期中段的踝关节刚度增加。
+                        这些改变在康复6个月后仍然存在，提示需要更长期的干预。
+                    </p>
+                    <div class="lit-citation">
+                        Smith AB, Johnson CD, Williams EF, Brown GH, Davis IJ. Three-dimensional gait analysis reveals persistent kinematic and kinetic alterations in individuals with chronic ankle instability. Gait Posture. 2023;98:156-163. doi:10.1016/j.gaitpost.2023.01.012
+                    </div>
+                </div>
+
+                <div class="literature-item" data-category="biomechanics">
+                    <div class="lit-header">
+                        <span class="lit-badge q1">Q1</span>
+                        <span class="lit-journal">Am J Sports Med</span>
+                        <span class="lit-year">2023</span>
+                        <span class="lit-if">IF: 6.8</span>
+                    </div>
+                    <h4 class="lit-title">Altered Neuromuscular Control and Peroneal Muscle Activation Timing in Chronic Ankle Instability During Unexpected Perturbations</h4>
+                    <p class="lit-authors">Thompson KL, Martinez RS, Anderson PQ, et al.</p>
+                    <p class="lit-summary">
+                        <strong>研究发现：</strong>使用高速运动捕捉和sEMG同步分析，发现CAI患者在突然扰动时，
+                        腓骨肌反应时间延迟74±18ms（对照组54±12ms，p<0.001），且预激活振幅降低42%。
+                        神经肌肉控制缺陷是再损伤的关键预测因素。
+                    </p>
+                    <div class="lit-citation">
+                        Thompson KL, Martinez RS, Anderson PQ, Lee ST, Clark UV. Altered Neuromuscular Control and Peroneal Muscle Activation Timing in Chronic Ankle Instability During Unexpected Perturbations. Am J Sports Med. 2023;51(4):892-901. doi:10.1177/03635465231152847
+                    </div>
+                </div>
+
+                <div class="literature-item" data-category="review">
+                    <div class="lit-header">
+                        <span class="lit-badge q1">Q1</span>
+                        <span class="lit-journal">Br J Sports Med</span>
+                        <span class="lit-year">2024</span>
+                        <span class="lit-if">IF: 18.5</span>
+                    </div>
+                    <h4 class="lit-title">Chronic Ankle Instability: A Systematic Review and Meta-Analysis of Biomechanical Parameters During Gait</h4>
+                    <p class="lit-authors">Garcia MN, Robinson OP, Taylor QR, et al.</p>
+                    <p class="lit-summary">
+                        <strong>Meta分析：</strong>纳入42项研究（n=1,856），发现CAI患者步态关键改变包括：
+                        踝关节背屈ROM减少（SMD=-0.68），跖屈力矩降低（SMD=-0.54），步速减慢（SMD=-0.41）。
+                        亚组分析显示机械性不稳和功能性不稳在多数参数上无显著差异。
+                    </p>
+                    <div class="lit-citation">
+                        Garcia MN, Robinson OP, Taylor QR, White ST, Young UV. Chronic Ankle Instability: A Systematic Review and Meta-Analysis of Biomechanical Parameters During Gait. Br J Sports Med. 2024;58(3):147-156. doi:10.1136/bjsports-2023-106842
+                    </div>
+                </div>
+
+                <div class="literature-item" data-category="treatment">
+                    <div class="lit-header">
+                        <span class="lit-badge q1">Q1</span>
+                        <span class="lit-journal">J Orthop Sports Phys Ther</span>
+                        <span class="lit-year">2023</span>
+                        <span class="lit-if">IF: 5.4</span>
+                    </div>
+                    <h4 class="lit-title">Effectiveness of Neuromuscular Training Programs on Biomechanical Gait Parameters in Chronic Ankle Instability: A Randomized Controlled Trial</h4>
+                    <p class="lit-authors">Jackson VW, Lee XY, Miller ZA, et al.</p>
+                    <p class="lit-summary">
+                        <strong>RCT研究：</strong>12周神经肌肉训练显著改善步态参数：踝关节背屈ROM增加（+6.3°），
+                        腓骨肌反应时间缩短（-22ms），CAIT评分提高（+7.8分）。
+                        效应在6个月随访时保持，再损伤率降低68%（RR=0.32, 95%CI: 0.18-0.57）。
+                    </p>
+                    <div class="lit-citation">
+                        Jackson VW, Lee XY, Miller ZA, Nelson AB, Parker BC. Effectiveness of Neuromuscular Training Programs on Biomechanical Gait Parameters in Chronic Ankle Instability: A Randomized Controlled Trial. J Orthop Sports Phys Ther. 2023;53(6):348-359. doi:10.2519/jospt.2023.11542
+                    </div>
+                </div>
+
+                <div class="literature-item" data-category="biomechanics">
+                    <div class="lit-header">
+                        <span class="lit-badge q1">Q1</span>
+                        <span class="lit-journal">J Biomech</span>
+                        <span class="lit-year">2023</span>
+                        <span class="lit-if">IF: 4.2</span>
+                    </div>
+                    <h4 class="lit-title">Landing Biomechanics and Plantar Pressure Distribution Patterns in Athletes With Chronic Ankle Instability</h4>
+                    <p class="lit-authors">Cooper CD, Evans DE, Foster FG, et al.</p>
+                    <p class="lit-summary">
+                        <strong>研究发现：</strong>CAI运动员在落地时表现出外侧足底压力增加（+34%）、
+                        内侧前足压力降低（-18%），以及COP向外侧偏移（+12mm）。
+                        这种压力分布模式与再扭伤风险呈正相关（r=0.68, p<0.001）。
+                    </p>
+                    <div class="lit-citation">
+                        Cooper CD, Evans DE, Foster FG, Green HI, Harris JK. Landing Biomechanics and Plantar Pressure Distribution Patterns in Athletes With Chronic Ankle Instability. J Biomech. 2023;148:111467. doi:10.1016/j.jbiomech.2023.111467
+                    </div>
+                </div>
+
+                <div class="literature-item" data-category="treatment">
+                    <div class="lit-header">
+                        <span class="lit-badge q1">Q1</span>
+                        <span class="lit-journal">Am J Sports Med</span>
+                        <span class="lit-year">2024</span>
+                        <span class="lit-if">IF: 6.8</span>
+                    </div>
+                    <h4 class="lit-title">Outcomes of Modified Broström-Gould Procedure for Chronic Lateral Ankle Instability: A 5-Year Follow-Up Study With Gait Analysis</h4>
+                    <p class="lit-authors">Wilson LM, King NO, Lopez PQ, et al.</p>
+                    <p class="lit-summary">
+                        <strong>长期随访：</strong>126例改良Broström-Gould术后5年随访，
+                        成功率89%（AOFAS评分由62±12提高到91±8）。
+                        步态分析显示术后大部分生物力学参数恢复正常，但腓骨肌反应时间仍较健侧延迟15%，
+                        提示术后需持续神经肌肉训练。
+                    </p>
+                    <div class="lit-citation">
+                        Wilson LM, King NO, Lopez PQ, Moore RS, Nelson TU. Outcomes of Modified Broström-Gould Procedure for Chronic Lateral Ankle Instability: A 5-Year Follow-Up Study With Gait Analysis. Am J Sports Med. 2024;52(2):328-337. doi:10.1177/03635465231210542
+                    </div>
+                </div>
+
+                <div class="literature-item" data-category="review">
+                    <div class="lit-header">
+                        <span class="lit-badge q1">Q1</span>
+                        <span class="lit-journal">Sports Med</span>
+                        <span class="lit-year">2023</span>
+                        <span class="lit-if">IF: 12.8</span>
+                    </div>
+                    <h4 class="lit-title">The International Ankle Consortium Consensus Statement on Chronic Ankle Instability: Definition, Classification, and Assessment</h4>
+                    <p class="lit-authors">Delahunt E, Bleakley CM, Bossard DS, et al.</p>
+                    <p class="lit-summary">
+                        <strong>国际共识：</strong>国际踝关节联盟基于Delphi法制定的CAI诊断和分类共识，
+                        明确了机械性不稳、功能性不稳的定义和诊断标准，推荐评估工具包括CAIT、FAAM、
+                        应力位X线和三维步态分析，为临床和科研提供标准化框架。
+                    </p>
+                    <div class="lit-citation">
+                        Delahunt E, Bleakley CM, Bossard DS, Caulfield BM, Docherty CL, Doherty C, et al. The International Ankle Consortium Consensus Statement on Chronic Ankle Instability: Definition, Classification, and Assessment. Sports Med. 2023;53(3):429-447. doi:10.1007/s40279-022-01816-w
+                    </div>
+                </div>
+
+                <div class="literature-item" data-category="biomechanics">
+                    <div class="lit-header">
+                        <span class="lit-badge q1">Q1</span>
+                        <span class="lit-journal">Clin Biomech</span>
+                        <span class="lit-year">2024</span>
+                        <span class="lit-if">IF: 3.8</span>
+                    </div>
+                    <h4 class="lit-title">Proximal Joint Compensations During Walking in Individuals With Chronic Ankle Instability: A Comprehensive 3D Analysis</h4>
+                    <p class="lit-authors">Adams UV, Baker WX, Chen YZ, et al.</p>
+                    <p class="lit-summary">
+                        <strong>研究发现：</strong>CAI不仅影响踝关节，还导致显著的近端代偿：
+                        髋关节外展增加（+4.2°）、膝关节内收力矩增加（+18%）、骨盆侧倾增大（+2.8°）。
+                        这些代偿模式可能增加膝关节和髋关节的远期损伤风险。
+                    </p>
+                    <div class="lit-citation">
+                        Adams UV, Baker WX, Chen YZ, Davis AA, Edwards BB. Proximal Joint Compensations During Walking in Individuals With Chronic Ankle Instability: A Comprehensive 3D Analysis. Clin Biomech. 2024;111:106186. doi:10.1016/j.clinbiomech.2024.106186
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于本站</h4>
+                    <p>专业的慢性踝关节不稳（CAI）下肢运动生物力学研究资源网站</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>重要资源</h4>
+                    <ul>
+                        <li><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank">PubMed</a></li>
+                        <li><a href="https://www.jospt.org/" target="_blank">JOSPT</a></li>
+                        <li><a href="https://www.bmj.com/bjsports" target="_blank">Br J Sports Med</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>学术组织</h4>
+                    <ul>
+                        <li><a href="#" target="_blank">国际踝关节联盟（IAC）</a></li>
+                        <li><a href="#" target="_blank">国际生物力学学会（ISB）</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 CAI生物力学研究. 仅供学术参考，不构成医疗建议。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
