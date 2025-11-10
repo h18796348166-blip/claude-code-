@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="慢性踝关节不稳（CAI）下肢运动生物力学研究 - 专业医学研究网站">
+    <title>慢性踝关节不稳（CAI）生物力学研究</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+
+    <style>
+        /* ===========================
+           Reset and Base Styles
+           =========================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0071e3;
+            --dark-blue: #0051a5;
+            --light-blue: #e8f4fd;
+            --accent-blue: #007aff;
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --text-tertiary: #86868b;
+            --bg-white: #ffffff;
+            --bg-light: #f5f5f7;
+            --bg-section-alt: #fbfbfd;
+            --border-light: #d2d2d7;
+            --border-medium: #c4c4c9;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 48px;
+            --spacing-xl: 80px;
+            --font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-size-xs: 0.875rem;
+            --font-size-sm: 1rem;
+            --font-size-md: 1.125rem;
+            --font-size-lg: 1.5rem;
+            --font-size-xl: 2rem;
+            --font-size-2xl: 2.5rem;
+            --font-size-3xl: 3rem;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --transition-fast: 0.2s ease;
+            --transition-base: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-primary);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ===========================
+           Navigation Bar
+           =========================== */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            z-index: 1000;
+            transition: var(--transition-base);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+        }
+
+        .nav-logo {
+            font-size: var(--font-size-md);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-md);
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: var(--font-size-xs);
+            font-weight: 400;
+            transition: color var(--transition-fast);
+            padding: var(--spacing-xs) 0;
+        }
+
+        .nav-menu li a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--spacing-xs);
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: var(--transition-base);
+        }
+
+        /* ===========================
+           Hero Section
+           =========================== */
+        .hero {
+            margin-top: 56px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f4fd 100%);
+            padding: var(--spacing-xl) var(--spacing-md);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            font-weight: 500;
+            color: var(--primary-blue);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .hero-description {
+            font-size: var(--font-size-md);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===========================
+           Section Styles
+           =========================== */
+        .section {
+            padding: var(--spacing-xl) var(--spacing-md);
+        }
+
+        .section-alt {
+            background-color: var(--bg-section-alt);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            letter-spacing: -0.01em;
+        }
+
+        /* ===========================
+           Cards and Grids
+           =========================== */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .card {
+            background-color: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .card h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .info-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-list li {
+            color: var(--text-secondary);
+            padding: var(--spacing-xs) 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list li strong {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* ===========================
+           Diagnostic Criteria
+           =========================== */
+        .diagnostic-criteria {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .criteria-item {
+            display: flex;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background-color: var(--bg-light);
+            border-radius: var(--radius-md);
+        }
+
+        .criteria-number {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+        }
+
+        .criteria-content h4 {
+            font-size: var(--font-size-md);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .criteria-content p {
+            color: var(--text-secondary);
+        }
+
+        .criteria-content ul {
+            margin-top: var(--spacing-xs);
+            padding-left: var(--spacing-md);
+        }
+
+        .criteria-content ul li {
+            color: var(--text-secondary);
+            margin: 4px 0;
+        }
+
+        /* ===========================
+           Chart Styles
+           =========================== */
+        .chart-container {
+            background-color: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            box-shadow: var(--shadow-md);
+        }
+
+        .chart-container h4 {
+            font-size: var(--font-size-md);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            text-align: center;
+        }
+
+        .chart {
+            width: 100%;
+            height: 400px;
+            min-height: 300px;
+        }
+
+        /* ===========================
+           Footer
+           =========================== */
+        .footer {
+            background-color: var(--bg-light);
+            padding: var(--spacing-lg) var(--spacing-md);
+            margin-top: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--text-tertiary);
+            font-size: var(--font-size-xs);
+        }
+
+        /* ===========================
+           Responsive Design
+           =========================== */
+        @media (max-width: 768px) {
+            :root {
+                --font-size-3xl: 2rem;
+                --font-size-2xl: 1.75rem;
+                --font-size-xl: 1.5rem;
+                --spacing-xl: 48px;
+                --spacing-lg: 32px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 56px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background-color: rgba(255, 255, 255, 0.95);
+                backdrop-filter: saturate(180%) blur(20px);
+                padding: var(--spacing-md);
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height var(--transition-base);
+                box-shadow: var(--shadow-md);
+            }
+
+            .nav-menu.active {
+                max-height: 400px;
+            }
+
+            .nav-menu li {
+                padding: var(--spacing-sm) 0;
+                border-bottom: 1px solid var(--border-light);
+            }
+
+            .nav-menu li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .hero {
+                padding: var(--spacing-lg) var(--spacing-md);
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: var(--spacing-lg) var(--spacing-sm);
+            }
+
+            .hero {
+                padding: var(--spacing-md) var(--spacing-sm);
+            }
+
+            .card {
+                padding: var(--spacing-sm);
+            }
+        }
+
+        /* ===========================
+           Animations
+           =========================== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section > * {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        *:focus-visible {
+            outline: 2px solid var(--primary-blue);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="nav-logo">CAI 生物力学研究</div>
+            <ul class="nav-menu">
+                <li><a href="#overview">疾病概述</a></li>
+                <li><a href="#biomechanics">生物力学</a></li>
+                <li><a href="#charts">数据可视化</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">慢性踝关节不稳</h1>
+            <p class="hero-subtitle">下肢运动生物力学研究</p>
+            <p class="hero-description">基于三维步态分析的综合评估与康复方案</p>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section">
+        <div class="container">
+            <h2 class="section-title">疾病概述</h2>
+
+            <div class="content-grid">
+                <div class="card">
+                    <h3>定义</h3>
+                    <p>慢性踝关节不稳（Chronic Ankle Instability, CAI）是指踝关节急性扭伤后，反复发作的踝关节不稳感、"打软腿"以及踝关节反复扭伤的临床症状。</p>
+                </div>
+
+                <div class="card">
+                    <h3>流行病学</h3>
+                    <ul class="info-list">
+                        <li>发生率：踝关节扭伤患者中 <strong>40-70%</strong> 会发展为CAI</li>
+                        <li>年发病率：每10,000人中约 <strong>2.15例</strong></li>
+                        <li>运动相关损伤占比：<strong>15-20%</strong></li>
+                        <li>性别分布：女性发病率略高于男性（1.2:1）</li>
+                    </ul>
+                </div>
+
+                <div class="card full-width">
+                    <h3>国际踝关节联盟（IAC）诊断标准</h3>
+                    <div class="diagnostic-criteria">
+                        <div class="criteria-item">
+                            <div class="criteria-number">1</div>
+                            <div class="criteria-content">
+                                <h4>踝关节扭伤史</h4>
+                                <p>至少一次明确的踝关节急性扭伤病史，导致疼痛和肿胀</p>
+                            </div>
+                        </div>
+                        <div class="criteria-item">
+                            <div class="criteria-number">2</div>
+                            <div class="criteria-content">
+                                <h4>反复发作</h4>
+                                <p>最近一次踝关节扭伤后至少12个月内，出现以下至少一项：
+                                    <ul>
+                                        <li>反复的踝关节扭伤</li>
+                                        <li>反复的"打软腿"或踝关节不稳感</li>
+                                        <li>持续的踝关节功能受限</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="criteria-item">
+                            <div class="criteria-number">3</div>
+                            <div class="criteria-content">
+                                <h4>功能评估</h4>
+                                <p>CAIT（Cumberland踝关节不稳工具）评分 ≤ 24分，或FAAM-ADL评分 < 90%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biomechanics Section -->
+    <section id="biomechanics" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">关键生物力学参数</h2>
+
+            <div class="content-grid">
+                <div class="card">
+                    <h3>运动学参数</h3>
+                    <ul class="info-list">
+                        <li><strong>踝关节背屈ROM：</strong> CAI患者 15-18° (正常 20-25°)</li>
+                        <li><strong>内翻角速度：</strong> CAI患者 180-220°/s ↑ (正常 120-150°/s)</li>
+                        <li><strong>膝关节屈曲角：</strong> CAI患者 20-25° ↓ (正常 25-30°)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>动力学参数</h3>
+                    <ul class="info-list">
+                        <li><strong>垂直GRF峰值：</strong> CAI患者 105-115% BW ↓ (正常 110-120% BW)</li>
+                        <li><strong>踝关节外翻力矩：</strong> CAI患者 0.2-0.35 Nm/kg ↓ (正常 0.3-0.5 Nm/kg)</li>
+                        <li><strong>踝关节功率：</strong> CAI患者 2.8-3.8 W/kg ↓ (正常 3.5-4.5 W/kg)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>时空参数</h3>
+                    <ul class="info-list">
+                        <li><strong>步速：</strong> CAI患者 1.0-1.2 m/s ↓ (正常 1.2-1.4 m/s)</li>
+                        <li><strong>步长：</strong> CAI患者 0.60-0.70 m ↓ (正常 0.65-0.75 m)</li>
+                        <li><strong>步宽：</strong> CAI患者 10-15 cm ↑ (正常 8-12 cm)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>肌肉激活</h3>
+                    <ul class="info-list">
+                        <li><strong>腓骨肌反应时间：</strong> CAI患者 延迟至 -10~-30 ms (正常 -30~-50 ms)</li>
+                        <li><strong>腓骨肌峰值激活：</strong> CAI患者 25-40% MVC ↓ (正常 40-60% MVC)</li>
+                        <li><strong>协同收缩指数：</strong> CAI患者 40-55% ↑ (正常 25-35%)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Charts Section -->
+    <section id="charts" class="section">
+        <div class="container">
+            <h2 class="section-title">交互式数据可视化</h2>
+
+            <div class="chart-container">
+                <h4>步态周期关节角度曲线</h4>
+                <div id="gait-cycle-chart" class="chart"></div>
+            </div>
+
+            <div class="chart-container">
+                <h4>地面反作用力对比</h4>
+                <div id="grf-chart" class="chart"></div>
+            </div>
+
+            <div class="chart-container">
+                <h4>肌电激活热图</h4>
+                <div id="emg-heatmap" class="chart"></div>
+            </div>
+
+            <div class="chart-container">
+                <h4>压力中心（COP）轨迹</h4>
+                <div id="cop-trajectory" class="chart"></div>
+            </div>
+
+            <div class="chart-container">
+                <h4>患侧 vs 健侧生物力学参数对比</h4>
+                <div id="comparison-chart" class="chart"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 CAI生物力学研究. 仅供学术参考，不构成医疗建议。</p>
+    </footer>
+
+    <script>
+        // Navigation Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (navToggle) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+            }
+
+            // Smooth Scrolling
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navMenu.classList.remove('active');
+                    const targetId = link.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        const navHeight = document.querySelector('.nav-bar').offsetHeight;
+                        const targetPosition = targetSection.offsetTop - navHeight;
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Initialize Charts
+            initializeCharts();
+        });
+
+        function initializeCharts() {
+            initGaitCycleChart();
+            initGRFChart();
+            initEMGHeatmap();
+            initCOPTrajectory();
+            initComparisonChart();
+        }
+
+        // Chart 1: Gait Cycle
+        function initGaitCycleChart() {
+            const chartDom = document.getElementById('gait-cycle-chart');
+            if (!chartDom) return;
+            const myChart = echarts.init(chartDom);
+
+            const gaitCycle = Array.from({ length: 101 }, (_, i) => i);
+            const normalAnkle = gaitCycle.map(x => {
+                if (x < 10) return -5 + x * 0.5;
+                if (x < 50) return 0 + (50 - x) * 0.3;
+                if (x < 60) return -15 + (x - 50) * 2;
+                if (x < 100) return 5 - (x - 60) * 0.125;
+                return 0;
+            });
+            const caiAnkle = gaitCycle.map(x => {
+                if (x < 10) return -3 + x * 0.3;
+                if (x < 50) return 0 + (50 - x) * 0.2;
+                if (x < 60) return -10 + (x - 50) * 1.5;
+                if (x < 100) return 5 - (x - 60) * 0.125;
+                return 0;
+            });
+
+            const option = {
+                tooltip: { trigger: 'axis' },
+                legend: { data: ['正常对照', 'CAI患者'], top: 10 },
+                grid: { left: '10%', right: '10%', bottom: '15%', top: '15%' },
+                xAxis: { type: 'category', data: gaitCycle, name: '步态周期 (%)', axisLabel: { interval: 19 } },
+                yAxis: { type: 'value', name: '角度 (°)' },
+                series: [
+                    { name: '正常对照', type: 'line', data: normalAnkle, smooth: true, lineStyle: { color: '#30d158', width: 3 } },
+                    { name: 'CAI患者', type: 'line', data: caiAnkle, smooth: true, lineStyle: { color: '#ff3b30', width: 3 } }
+                ]
+            };
+            myChart.setOption(option);
+            window.addEventListener('resize', () => myChart.resize());
+        }
+
+        // Chart 2: GRF
+        function initGRFChart() {
+            const chartDom = document.getElementById('grf-chart');
+            if (!chartDom) return;
+            const myChart = echarts.init(chartDom);
+
+            const stancePhase = Array.from({ length: 61 }, (_, i) => i);
+            const normalGRF = stancePhase.map(x => {
+                if (x < 15) return 0 + x * 7;
+                if (x < 25) return 105 - (x - 15) * 1.5;
+                if (x < 40) return 90 + (x - 25) * 1.3;
+                if (x < 60) return 110 - (x - 40) * 5.5;
+                return 0;
+            });
+            const caiGRF = stancePhase.map(x => {
+                if (x < 15) return 0 + x * 6;
+                if (x < 25) return 90 - (x - 15) * 1;
+                if (x < 40) return 80 + (x - 25) * 1.2;
+                if (x < 60) return 98 - (x - 40) * 4.9;
+                return 0;
+            });
+
+            const option = {
+                tooltip: { trigger: 'axis' },
+                legend: { data: ['正常对照', 'CAI患者'], top: 10 },
+                grid: { left: '10%', right: '10%', bottom: '15%', top: '15%' },
+                xAxis: { type: 'category', data: stancePhase, name: '支撑期 (%)', axisLabel: { interval: 9 } },
+                yAxis: { type: 'value', name: 'GRF (% BW)', max: 120 },
+                series: [
+                    { name: '正常对照', type: 'line', data: normalGRF, smooth: true, lineStyle: { color: '#0071e3', width: 3 } },
+                    { name: 'CAI患者', type: 'line', data: caiGRF, smooth: true, lineStyle: { color: '#ff9500', width: 3, type: 'dashed' } }
+                ]
+            };
+            myChart.setOption(option);
+            window.addEventListener('resize', () => myChart.resize());
+        }
+
+        // Chart 3: EMG Heatmap
+        function initEMGHeatmap() {
+            const chartDom = document.getElementById('emg-heatmap');
+            if (!chartDom) return;
+            const myChart = echarts.init(chartDom);
+
+            const muscles = ['腓骨长肌', '腓骨短肌', '胫前肌', '腓肠肌', '胫后肌', '比目鱼肌'];
+            const gaitPhases = ['着地', '载荷', '站立中', '站立末', '摆动前', '摆动中', '摆动末'];
+            const emgData = [[45,62,38,28,15,8,22],[38,55,32,24,12,5,18],[55,42,25,35,28,45,62],[22,38,52,68,45,12,8],[32,48,58,52,35,15,12],[18,35,48,72,52,8,5]];
+            const data = [];
+            muscles.forEach((m, i) => gaitPhases.forEach((p, j) => data.push([j, i, emgData[i][j]])));
+
+            const option = {
+                tooltip: { position: 'top' },
+                grid: { left: '15%', right: '10%', bottom: '15%', top: '10%' },
+                xAxis: { type: 'category', data: gaitPhases, splitArea: { show: true }, axisLabel: { rotate: 30, fontSize: 11 } },
+                yAxis: { type: 'category', data: muscles, splitArea: { show: true }, axisLabel: { fontSize: 11 } },
+                visualMap: { min: 0, max: 80, calculable: true, orient: 'horizontal', left: 'center', bottom: '0%', inRange: { color: ['#e8f4fd', '#0071e3', '#0051a5'] } },
+                series: [{ name: 'EMG', type: 'heatmap', data: data, label: { show: true, formatter: '{c}%', fontSize: 10 } }]
+            };
+            myChart.setOption(option);
+            window.addEventListener('resize', () => myChart.resize());
+        }
+
+        // Chart 4: COP Trajectory
+        function initCOPTrajectory() {
+            const chartDom = document.getElementById('cop-trajectory');
+            if (!chartDom) return;
+            const myChart = echarts.init(chartDom);
+
+            const normalCOP = [];
+            const caiCOP = [];
+            for (let i = 0; i <= 100; i++) {
+                normalCOP.push([i * 2.5, 50 + Math.sin(i * 0.1) * 8]);
+                caiCOP.push([i * 2.5, 55 + Math.sin(i * 0.1) * 12]);
+            }
+
+            const option = {
+                tooltip: { trigger: 'item' },
+                legend: { data: ['正常对照', 'CAI患者'], top: 10 },
+                grid: { left: '12%', right: '10%', bottom: '15%', top: '15%' },
+                xAxis: { type: 'value', name: '前后方向 (mm)', min: 0, max: 260 },
+                yAxis: { type: 'value', name: '内外侧 (mm)', min: 20, max: 80 },
+                series: [
+                    { name: '正常对照', type: 'line', data: normalCOP, smooth: true, showSymbol: false, lineStyle: { color: '#30d158', width: 3 } },
+                    { name: 'CAI患者', type: 'line', data: caiCOP, smooth: true, showSymbol: false, lineStyle: { color: '#ff3b30', width: 3 } }
+                ]
+            };
+            myChart.setOption(option);
+            window.addEventListener('resize', () => myChart.resize());
+        }
+
+        // Chart 5: Comparison
+        function initComparisonChart() {
+            const chartDom = document.getElementById('comparison-chart');
+            if (!chartDom) return;
+            const myChart = echarts.init(chartDom);
+
+            const parameters = ['背屈ROM', '外翻力矩', '步速', 'GRF峰值', '腓骨肌激活', '单腿站立'];
+            const healthySide = [100, 100, 100, 100, 100, 100];
+            const affectedSide = [72, 72, 83, 92, 65, 75];
+
+            const option = {
+                tooltip: { trigger: 'axis' },
+                legend: { data: ['健侧', '患侧'], top: 10 },
+                grid: { left: '3%', right: '4%', bottom: '3%', top: '20%', containLabel: true },
+                xAxis: { type: 'category', data: parameters, axisLabel: { rotate: 20, fontSize: 11 } },
+                yAxis: { type: 'value', name: '相对值 (%)', max: 110 },
+                series: [
+                    { name: '健侧', type: 'bar', data: healthySide, itemStyle: { color: '#30d158' }, barWidth: '35%' },
+                    { name: '患侧', type: 'bar', data: affectedSide, itemStyle: { color: '#ff9500' }, barWidth: '35%', label: { show: true, position: 'top', formatter: '{c}%' } }
+                ]
+            };
+            myChart.setOption(option);
+            window.addEventListener('resize', () => myChart.resize());
+        }
+    </script>
+</body>
+</html>
